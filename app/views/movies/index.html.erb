@@ -17,7 +17,7 @@
           <td><%= m.name %></td>
           <td><%= m.sinopsis %></td>
           <td><%= m.duration %></td>
-          <td><%= m.image %></td>
+          <td><div class="thumb"><a href="/assets/<%= m.image %>"><%= image_tag m.image %></a></div></td>
           <td><%= link_to "Editar", edit_movie_path(m) %>&nbsp;|&nbsp;<%= link_to "Borrar", movie_path(m), method: :delete, data: { confirm: 'Estás seguro?' } %></td>
         </tr>
     <% end %>
