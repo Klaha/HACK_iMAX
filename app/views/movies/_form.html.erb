@@ -1,0 +1,11 @@
+<%= form_for @movie do |f| %>
+  <%= f.label :name, 'Nombre' %><br>
+  <%= f.text_field :name %><br>
+  <%= f.label :sinopsis, 'Sinopsis' %><br>
+  <%= f.text_field :sinopsis %><br>
+  <%= f.label :duration, 'Duración' %><br>
+  <%= f.text_field :duration %><br>
+  <%= f.label :image, 'Ruta de Imágen' %><br>
+  <%= f.text_field :image %><br><br>
+  <%= f.submit %>
+<% end %>
