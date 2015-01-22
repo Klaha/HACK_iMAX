@@ -1,16 +1,4 @@
-<%= form_for @show, url: employee_shows_path do |f| %>
-  <% if @show.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@show.errors.count, "error") %> prohibited this show from being saved:</h2>
-
-      <ul>
-      <% @show.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_for @show, url: @path do |f| %> 
   <div class="field">
     <%= f.label :movie_id %><br>
     <%= f.number_field :movie_id %>
@@ -19,10 +7,7 @@
     <%= f.label :time %><br>
     <%= f.time_select :time %>
   </div>
-  <div class="field">
-    <%= f.label :date_show %><br>
-    <%= f.date_select :date_show %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

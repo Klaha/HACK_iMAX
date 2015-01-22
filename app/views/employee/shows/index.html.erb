@@ -5,9 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th colspan="6">Shows</th>
+      <th colspan="7">Shows</th>
     </tr>
     <tr>
+      <td>id</td>
       <td>Movie id</td>
       <td>Time</td>
       <td>Date Show</td>
@@ -17,10 +18,13 @@
   <tbody>
     <% @shows.each do |show| %>
       <tr>
-        <td><%= show.movie_id %></td>
-        <td><%= show.time %></td>
-        <td><%= show.date_show %></td>
-        
+        <td><%= show.id %> | </td>
+        <td><%= show.movie_id %> | </td>
+        <td><%= show.time %> | </td>
+        <td><%= show.date_show %> | </td>
+        <td><%= link_to 'Show', employee_show_path(show.id) %> | </td>
+        <td><%= link_to 'Edit', edit_employee_show_path(show.id) %> | </td>
+        <td><%= link_to 'Destroy', employee_show_path(show.id), method: :delete, data: { confirm: 'Are you sure?' } %> | </td>
       </tr>
     <% end %>
   </tbody>
