@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+.thumb {
+  width: 150px;
+}
+
+.thumb img {
+  max-width: 100%;
+}
