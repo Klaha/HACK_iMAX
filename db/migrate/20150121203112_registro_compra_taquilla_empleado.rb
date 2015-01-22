@@ -3,6 +3,7 @@ class RegistroCompraTaquillaEmpleado < ActiveRecord::Migration
     create_table :shows do |t|
       t.integer :movie_id, index:true
       t.time :time
+      t.integer :theater_id, index:true
       t.date :date_show
 
       t.timestamps
