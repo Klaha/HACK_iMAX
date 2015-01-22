@@ -1,0 +1,17 @@
+<div class="col-sm-6 col-sm-offset-3">
+  <h1 class="text-center">Detalle de Película</h1>
+  <dl class="dl-horizontal">
+    <dt>Nombre:</dt>
+    <dd><%= @movie.name %></dd>
+    <dt>Sinopsis:</dt>
+    <dd><%= @movie.sinopsis %></dd>
+    <dt>Duración:</dt>
+    <dd><%= @movie.duration %></dd>
+    <dt>Imágen:</dt>
+    <dd><%= @movie.image %></dd>
+  </dl>
+  <div class="text-center">
+    <%= link_to "Inicio", admin_movies_path, :class => 'btn btn-primary' %>
+    <%= link_to "Editar", edit_admin_movie_path(@movie), :class => 'btn btn-success' %>
+  </div>
+</div>
