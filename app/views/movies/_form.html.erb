@@ -1,11 +1,19 @@
 <%= form_for @movie do |f| %>
-  <%= f.label :name, 'Nombre' %><br>
-  <%= f.text_field :name %><br>
-  <%= f.label :sinopsis, 'Sinopsis' %><br>
-  <%= f.text_field :sinopsis %><br>
-  <%= f.label :duration, 'Duración' %><br>
-  <%= f.text_field :duration %><br>
-  <%= f.label :image, 'Ruta de Imágen' %><br>
-  <%= f.text_field :image %><br><br>
-  <%= f.submit %>
+  <div class="form-group">
+    <%= f.label :name, 'Nombre' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :sinopsis, 'Sinopsis' %>
+    <%= f.text_field :sinopsis, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :duration, 'Duración' %>
+    <%= f.text_field :duration, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :image, 'Ruta de Imágen' %>
+    <%= f.text_field :image, class: 'form-control' %>
+  </div>
+  <%= f.submit class: 'btn btn-success' %>
 <% end %>
