@@ -40,10 +40,8 @@ class Employee::ShowsController < ApplicationController
     respond_to do |format|
       if @show.update(show_params)
         format.html { redirect_to employee_shows_path, notice: 'Show was successfully updated.' }
-        format.json { render :show, status: :ok, location: @show }
       else
         format.html { render :edit }
-        format.json { render json: @show.errors, status: :unprocessable_entity }
       end
     end
   end
