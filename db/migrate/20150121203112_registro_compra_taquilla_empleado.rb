@@ -1,7 +1,7 @@
 class RegistroCompraTaquillaEmpleado < ActiveRecord::Migration
   def change
     create_table :shows do |t|
-      t.integer :movie_id, index: true
+      t.integer :movie_id, index:true
       t.time :time
       t.date :date_show
 
