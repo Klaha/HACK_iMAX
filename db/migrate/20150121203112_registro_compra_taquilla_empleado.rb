@@ -16,11 +16,11 @@ class RegistroCompraTaquillaEmpleado < ActiveRecord::Migration
     end
 
 
-    create_table :transactions do |t|
-      t.integer :user_id, index: true
-      t.integer :show_id, index: true
-      t.timestamps
-    end
+    # create_table :transactions do |t|
+    #   t.integer :user_id, index: true
+    #   t.integer :show_id, index: true
+    #   t.timestamps
+    # end
 
     #add_foreign_key :articles, :authors
 

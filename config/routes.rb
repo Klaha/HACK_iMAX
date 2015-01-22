@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
+  # namespace :admin do
+  #   resources :articles, :comments
+  # end
   resources :users
   get '/adminn/peliculas' => 'users#add_movies'
+  # get '/employee/new_show' => 'employee#new_show'
+  # post '/employee/new_show' => 'employee#create_show'
+
+  namespace :employee do
+    resources :shows
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

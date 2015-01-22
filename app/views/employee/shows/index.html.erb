@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Shows</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="6">Shows</th>
+    </tr>
+    <tr>
+      <td>Movie id</td>
+      <td>Time</td>
+      <td>Date Show</td>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <% @shows.each do |show| %>
+      <tr>
+        <td><%= show.movie_id %></td>
+        <td><%= show.time %></td>
+        <td><%= show.date_show %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Show', new_employee_show_path %>
