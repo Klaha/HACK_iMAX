@@ -12,7 +12,7 @@ class RegistroCompraTaquillaEmpleado < ActiveRecord::Migration
 
     create_table :theaters do |t|
       t.integer :theater_number
-      t.string :type
+      t.string :type_theater
 
       t.timestamps
     end
