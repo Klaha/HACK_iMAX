@@ -5,11 +5,12 @@
 <table>
   <thead>
     <tr>
-      <th colspan="7">Shows</th>
+      <th colspan="8">Shows</th>
     </tr>
     <tr>
       <td>id</td>
       <td>Movie</td>
+      <td>Sala</td>
       <td>Time</td>
       <td>Date Show</td>
       
@@ -20,6 +21,7 @@
       <tr>
         <td><%= show.id %> | </td>
         <td><%= show.movie.name %> | </td>
+        <td><%= show.theater.theater_number %> | </td>
         <td><%= show.time %> | </td>
         <td><%= show.date_show %> | </td>
         <td><%= link_to 'Show', employee_show_path(show.id) %> | </td>

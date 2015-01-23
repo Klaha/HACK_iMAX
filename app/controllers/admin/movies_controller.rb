@@ -1,8 +1,8 @@
 class Admin::MoviesController < ApplicationController
   before_action :get_movies, only: [:show, :edit, :update, :destroy]
+  before_action :show_all_movies, only: [:index, :cartelera]
 
   def index
-    @movies = Movie.all
   end
 
   def show
@@ -37,10 +37,17 @@ class Admin::MoviesController < ApplicationController
     redirect_to admin_movies_path
   end
 
+  def cartelera
+  end
+
   private
 
   def get_movies
     @movie = Movie.find(params[:id])
+  end
+
+  def show_all_movies
+    @movies = Movie.all
   end
 
   def movie_params
