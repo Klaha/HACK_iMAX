@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150121203112) do
   create_table "movies", force: true do |t|
     t.string   "name"
     t.string   "sinopsis"
-    t.string   "duration"
+    t.time     "duration"
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20150121203112) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "shows", ["movie_id"], name: "index_shows_on_movie_id"
 
   create_table "theaters", force: true do |t|
     t.integer  "theater_number"
