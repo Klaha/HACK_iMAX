@@ -14,7 +14,6 @@ class Employee::ShowsController < ApplicationController
   end
 
   def create
-
     @show = Show.new(show_params)
     @show.date_show = Date.today
     respond_to do |format|
@@ -58,7 +57,7 @@ class Employee::ShowsController < ApplicationController
       # movie_id
       # time
       # date_show
-      params.require(:show).permit(:movie_id,:time)
+      params.require(:show).permit(:movie_id,:time,:theater_id)
     end
 
 end

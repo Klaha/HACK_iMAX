@@ -3,6 +3,12 @@
     <%= f.label :movie_id %><br>
     <%= f.collection_select(:movie_id, Movie.all, :id, :name, prompt: "Seleccione Película") %>
   </div>
+
+  <div class="field">
+    <%= f.label :theater_id %><br>
+    <%= f.collection_select(:theater_id, Theater.all, :id, :theater_number, prompt: "Seleccione Sala") %>
+  </div>
+
   <div class="field">
     <%= f.label :time %><br>
     <%= f.time_select :time %>
