@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150121203112) do
   create_table "shows", force: true do |t|
     t.integer  "movie_id"
     t.time     "time"
+    t.integer  "theater_id"
     t.date     "date_show"
     t.datetime "created_at"
     t.datetime "updated_at"

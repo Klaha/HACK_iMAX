@@ -1,19 +1,20 @@
 class Employee::ShowsController < ApplicationController
   before_action :set_show, only: [:show, :edit, :update, :destroy]
+  
   def index
     @shows = Show.all
-  end
-
-  def new
-    @show = Show.new
-    @movies = Movie.all
-    @path = employee_shows_path
   end
 
   def show
   end
 
+  def new
+    @show = Show.new
+    @path = employee_shows_path
+  end
+
   def create
+
     @show = Show.new(show_params)
     @show.date_show = Date.today
     respond_to do |format|

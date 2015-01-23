@@ -9,7 +9,7 @@
     </tr>
     <tr>
       <td>id</td>
-      <td>Movie id</td>
+      <td>Movie</td>
       <td>Time</td>
       <td>Date Show</td>
       
@@ -19,7 +19,7 @@
     <% @shows.each do |show| %>
       <tr>
         <td><%= show.id %> | </td>
-        <td><%= show.movie_id %> | </td>
+        <td><%= show.movie.name %> | </td>
         <td><%= show.time %> | </td>
         <td><%= show.date_show %> | </td>
         <td><%= link_to 'Show', employee_show_path(show.id) %> | </td>

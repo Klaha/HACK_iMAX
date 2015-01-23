@@ -1,4 +1,4 @@
 class Show < ActiveRecord::Base
-  has_many :theater
-  has_many :movie
+  has_many :theaters
+  belongs_to :movie
 end
