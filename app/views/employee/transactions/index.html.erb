@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Transactions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="7">Transactions</th>
+    </tr>
+    <tr>
+      <td>id</td>
+      <td>Movie</td>
+      <td>Time</td>
+      <td>Date Transaction</td>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <% @transaction.each do |show| %>
+      <tr>
+        <td><%= transaction.id %> | </td>
+        <td><%= transaction.movie.name %> | </td>
+        <td><%= transaction.time %> | </td>
+        <td><%= transaction.date_transaction %> | </td>
+        <td><%= link_to 'Transaction', employee_transaction_path(transaction.id) %> | </td>
+        <td><%= link_to 'Edit', edit_employee_transaction_path(transaction.id) %> | </td>
+        <td><%= link_to 'Destroy', employee_transaction_path(transaction.id), method: :delete, data: { confirm: 'Are you sure?' } %> | </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Transaction', new_employee_transaction_path %>
