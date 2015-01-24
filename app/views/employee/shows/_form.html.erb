@@ -1,3 +1,7 @@
+<% if @ocupado %>
+  <h2>TEATRO OCUPADO! Porfavor Cambiar la hora</h2>
+<% end %>
+
 <%= form_for @show, url: @path do |f| %> 
   <div class="field">
     <%= f.label :movie_id %><br>
