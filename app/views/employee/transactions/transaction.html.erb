@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Movie_id:</strong>
+  <%= @transaction.movie_id %>
+</p>
+
+<p>
+  <strong>Date_transaction:</strong>
+  <%= @transaction.date_transaction %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @transaction.time %>
+</p>
+
+<%= link_to 'Edit', edit_employee_transaction_path(@transaction.id) %> |
+<%= link_to 'Back', employee_transactions_path %>
