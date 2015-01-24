@@ -82,6 +82,8 @@ class Employee::ShowsController < ApplicationController
 
       theater.shows.each do |s|
         start_time_2 = s.time.hour * 3600 + s.time.min * 60
+        # SE SUMAN 30 MINUTOS al final de la duracion de las peliculas ya en el sistema para los
+        #30 minutos de limpieza
         ending_time_2 = start_time_2 + s.movie.duration.hour * 3600 + (s.movie.duration.min + 30) * 60
         
         # BLOQUE DE Tiempo 1 show que se quiere ingresar (start_time , ending_time)
