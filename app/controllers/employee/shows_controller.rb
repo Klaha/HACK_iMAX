@@ -82,7 +82,7 @@ class Employee::ShowsController < ApplicationController
 
       theater.shows.each do |s|
         start_time_2 = s.time.hour * 3600 + s.time.min * 60
-        ending_time_2 = start_time_2 + s.movie.duration.hour * 3600 + s.movie.duration.min * 60
+        ending_time_2 = start_time_2 + s.movie.duration.hour * 3600 + (s.movie.duration.min + 30) * 60
         
         # BLOQUE DE Tiempo 1 show que se quiere ingresar (start_time , ending_time)
         # BLOQUE DE Tiempo 2 show que se tiene en el sistema cargado (start_time_2 , ending_time_2)
