@@ -1,5 +1,5 @@
 class Show < ActiveRecord::Base
-  has_many :transactions
+  has_many :show_transactions
   belongs_to :theater
   belongs_to :movie
   has_many :seats, through: :seat_shows

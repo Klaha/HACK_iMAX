@@ -1,24 +1,24 @@
-class Employee::TransactionsController < ApplicationController
+class Employee::ShowTransactionController < ApplicationController
   before_action :set_show, only: [:show, :edit, :update, :destroy]
   
   def index
-    @transaction = Transaction.all
+    @ShowTransaction = ShowTransaction.all
   end
 
   def show
   end
 
   def new
-    @transaction = Transaction.new
+    @ShowTransaction = ShowTransaction.new
     @path = employee_transactions_path
   end
 
   def create
 
-    @transaction = Transaction.new(transaction_params)
-    @transaction.date_transaction = Date.today
+    @ShowTransaction = ShowTransaction.new(transaction_params)
+    @ShowTransaction.date_transaction = Date.today
     respond_to do |format|
-      if @transaction.save
+      if @ShowTransaction.save
         format.html { redirect_to employee_show_path @show.id, notice: 'Show was successfully created.' }
         format.json { render :show, status: :created, location: @show }
       else
@@ -29,7 +29,7 @@ class Employee::TransactionsController < ApplicationController
   end
 
   def destroy
-    @transaction.destroy
+    @ShowTransaction.destroy
     redirect_to employee_transactions_path
   end
 
@@ -39,7 +39,7 @@ class Employee::TransactionsController < ApplicationController
 
   def update 
     respond_to do |format|
-      if @transaction.update(show_params)
+      if @ShowTransaction.update(show_params)
         format.html { redirect_to employee_transactions_path, notice: 'Transaction was successfully updated.' }
       else
         format.html { render :edit }
@@ -50,7 +50,7 @@ class Employee::TransactionsController < ApplicationController
   private
     # # Use callbacks to share common setup or constraints between actions.
     def set_transaction
-      @transaction = Transaction.find(params[:id])
+      @ShowTransaction = ShowTransaction.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -58,7 +58,7 @@ class Employee::TransactionsController < ApplicationController
       # movie_id
       # time
       # date_show
-      params.require(:transaction).permit(:movie_id,:time)
+      params.require(:ShowTransaction).permit(:movie_id,:time)
     end
 
 end

@@ -1,14 +1,14 @@
 class CreateTablesForTransactionsEmployee < ActiveRecord::Migration
   def change
-    # create_table :transactions do |t|
-    #   t.references :user, index: true
-    #   t.references :show, index: true
-    #   t.datetime :datetime_transaction
-    #   #t.timestamps
-    # end
+    create_table :show_transactions do |t|
+      t.references :user, index: true
+      t.references :show, index: true
+      t.datetime :datetime_transaction
+      #t.timestamps
+    end
 
     create_table :tickets do |t|
-      t.references :transaction, index: true
+      t.references :show_transaction, index: true
       t.string :type_ticket
       t.float :price
       #t.timestamps

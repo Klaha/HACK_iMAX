@@ -1,4 +1,4 @@
-<%= form_for @transaction, url: @path do |f| %> 
+<%= form_for @ShowTransaction, url: @path do |f| %>
   <div class="field">
     <%= f.label :movie_id %><br>
     <%= f.collection_select(:movie_id, Movie.all, :id, :name, prompt: "Seleccione Película") %>

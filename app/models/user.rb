@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_many :transactions
+	has_many :show_transactions
 	
 	validates :name, presence: true
 	validates :ci, presence: true
