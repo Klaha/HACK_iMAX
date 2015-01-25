@@ -1,0 +1,30 @@
+<div class="col-sm-12 jumbotron">
+  <h1 class="text-center"><%= @movie.name %></h1>
+  <br>
+  <div class="row">
+    <div class="col-sm-3 col-sm-offset-2">
+      <%= image_tag @movie.image %>
+    </div>
+    <div class="col-sm-5">
+      <h3 class="sinopsis-detalle"><%= @movie.sinopsis %></h3>
+      <h3 class="duracion-detalle">Duraci&oacute;n: <strong><%= @movie.duration.strftime("%I:%M") %></strong></h3>
+    </div>    
+  </div>
+</div>
+<div class="col-sm-4 col-sm-offset-4">
+  <table class="table table-striped table-bordered text-center">
+    <thead>
+      <tr>
+        <th class="text-center">Horarios</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @movie.shows.each do |m| %>
+        <tr>
+            <td><%= m.time.strftime("%I:%M" + " %p") %> Sala: <%= m.theater_id %>&nbsp;&nbsp;&nbsp;<%= link_to 'Comprar' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

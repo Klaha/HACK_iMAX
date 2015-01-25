@@ -1,6 +1,6 @@
 class Admin::MoviesController < ApplicationController
   before_action :get_movies, only: [:show, :edit, :update, :destroy]
-  before_action :show_all_movies, only: [:index, :cartelera]
+  before_action :show_all_movies, only: [:index]
 
   def index
   end
@@ -35,9 +35,6 @@ class Admin::MoviesController < ApplicationController
   def destroy
     @movie.destroy
     redirect_to admin_movies_path
-  end
-
-  def cartelera
   end
 
   private

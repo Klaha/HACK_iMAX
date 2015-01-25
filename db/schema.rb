@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121203112) do
+ActiveRecord::Schema.define(version: 20150125113712) do
 
   create_table "movies", force: true do |t|
     t.string   "name"
@@ -20,6 +20,22 @@ ActiveRecord::Schema.define(version: 20150121203112) do
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "seat_shows", force: true do |t|
+    t.integer "show_id"
+    t.integer "seat_id"
+    t.integer "ticket_id"
+    t.string  "status"
+  end
+
+  add_index "seat_shows", ["seat_id"], name: "index_seat_shows_on_seat_id"
+  add_index "seat_shows", ["show_id"], name: "index_seat_shows_on_show_id"
+  add_index "seat_shows", ["ticket_id"], name: "index_seat_shows_on_ticket_id"
+
+  create_table "seats", force: true do |t|
+    t.integer "row"
+    t.integer "col"
   end
 
   create_table "shows", force: true do |t|
@@ -35,10 +51,30 @@ ActiveRecord::Schema.define(version: 20150121203112) do
 
   create_table "theaters", force: true do |t|
     t.integer  "theater_number"
-    t.string   "type"
+    t.string   "type_theater"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tickets", force: true do |t|
+    t.integer "transaction_id"
+    t.string  "type_ticket"
+    t.float   "price"
+  end
+
+  add_index "tickets", ["transaction_id"], name: "index_tickets_on_transaction_id"
+
+  create_table "transactions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "shows_id"
+    t.integer  "show_id"
+    t.datetime "datetime_transaction"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "transactions", ["show_id"], name: "index_transactions_on_show_id"
+  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"
