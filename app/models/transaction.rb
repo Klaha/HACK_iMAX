@@ -1,4 +1,3 @@
 class Transaction < ActiveRecord::Base
-	has_many :tickets
-	belongs_to :show
+  has_many :tickets
 end
