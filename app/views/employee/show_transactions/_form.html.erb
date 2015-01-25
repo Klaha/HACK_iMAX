@@ -1,0 +1,20 @@
+<%= form_for @transactions, url: @path do |f| %>
+  <div class="field">
+    <%= f.label 'Seleccione Función' %><br>
+
+    <%= show_array = Show.all.map { |show| [show.movie.name + " " + show.time.strftime("%I:%M%P").to_s, show.id ] } %>
+    <%= select_tag(:show_id,options_for_select(show_array)) %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :Fecha %><br>
+    <%= f.datetime_select :datetime_transaction %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Comprar" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', employee_transactions_path %>

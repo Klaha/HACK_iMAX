@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   ##employee
 
     namespace :employee do
-      resources :show_transactions, as: 'transactions', path: 'transactions'
+      resources :show_transactions , as: 'transactions', path: 'ventas'
     end
 
     namespace :employee do

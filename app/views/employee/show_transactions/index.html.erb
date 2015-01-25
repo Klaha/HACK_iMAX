@@ -16,12 +16,11 @@
     </tr>
   </thead>
   <tbody>
-    <% @ShowTransaction.each do |show| %>
+    <% @transactions.each do |show| %>
       <tr>
         <td><%= transaction.id %> | </td>
         <td><%= transaction.movie.name %> | </td>
-        <td><%= transaction.time %> | </td>
-        <td><%= transaction.date_transaction %> | </td>
+        <td><%= transaction.datetime_transaction %> | </td>
         <td><%= link_to 'Transaction', employee_transaction_path(transaction.id) %> | </td>
         <td><%= link_to 'Edit', edit_employee_transaction_path(transaction.id) %> | </td>
         <td><%= link_to 'Destroy', employee_transaction_path(transaction.id), method: :delete, data: { confirm: 'Are you sure?' } %> | </td>

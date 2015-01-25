@@ -2,18 +2,18 @@
 
 <p>
   <strong>Movie_id:</strong>
-  <%= @ShowTransaction.movie_id %>
+  <%= @transactions.movie_id %>
 </p>
 
 <p>
   <strong>Date_transaction:</strong>
-  <%= @ShowTransaction.date_transaction %>
+  <%= @transactions.date_transaction %>
 </p>
 
 <p>
   <strong>Time:</strong>
-  <%= @ShowTransaction.time %>
+  <%= @transactions.time %>
 </p>
 
-<%= link_to 'Edit', edit_employee_transaction_path(@ShowTransaction.id) %> |
+<%= link_to 'Edit', edit_employee_transaction_path(@transactions.id) %> |
 <%= link_to 'Back', employee_transactions_path %>
