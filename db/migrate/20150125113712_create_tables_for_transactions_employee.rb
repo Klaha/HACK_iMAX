@@ -7,7 +7,7 @@ class CreateTablesForTransactionsEmployee < ActiveRecord::Migration
     #   #t.timestamps
     # end
 
-    create_table :ticket_transactions do |t|
+    create_table :tickets do |t|
       t.references :transaction, index: true
       t.string :type_ticket
       t.float :price
