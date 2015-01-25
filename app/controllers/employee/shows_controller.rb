@@ -1,6 +1,8 @@
-class Employee::ShowsController < ApplicationController
+class Employee::ShowsController < LoginController
+  before_action :path_login
+  before_action :require_login
   before_action :set_show, only: [:show, :edit, :update, :destroy]
-  
+
   def index
     @shows = Show.all
   end
@@ -65,6 +67,10 @@ class Employee::ShowsController < ApplicationController
     # # Use callbacks to share common setup or constraints between actions.
     def set_show
       @show = Show.find(params[:id])
+    end
+
+    def path_login
+      @path = employee_login_path
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
