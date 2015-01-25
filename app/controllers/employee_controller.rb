@@ -1,5 +1,5 @@
 class EmployeeController < LoginController
-  before_action :path_login # INDICA EL PATH PARA REDIRECCIONAR SI EL LOGIN ES FALLIDO
+  before_action :path_role_login # INDICA EL PATH PARA REDIRECCIONAR SI EL LOGIN ES FALLIDO, y el role de usuario para verificar
   before_action :require_login # VERIFICA USUARIO LOGEADO
   skip_before_action :require_login, only: [:login,:create_session] # NO VA A VERIFICAR USUARIO LOGEADO EN ESTAS ACCIONES
   def index
@@ -38,7 +38,8 @@ class EmployeeController < LoginController
     params.require(:user).permit(:email,:password)
   end
 
-  def path_login
+  def path_role_login
     @path ||= employee_login_path
+    @role = "E"
   end
 end

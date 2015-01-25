@@ -14,6 +14,10 @@ class LoginController < ApplicationController
 
     if @_current_user.nil?
       redirect_to @path, notice: "Debes iniciar Session para continuar"
+    else
+      if @_current_user.role != @role
+        redirect_to root_path, notice: "Usuario no Empleado"
+      end
     end
   end
 

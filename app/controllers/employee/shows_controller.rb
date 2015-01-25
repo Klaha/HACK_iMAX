@@ -1,5 +1,5 @@
 class Employee::ShowsController < LoginController
-  before_action :path_login
+  before_action :path_role_login
   before_action :require_login
   before_action :set_show, only: [:show, :edit, :update, :destroy]
 
@@ -69,8 +69,9 @@ class Employee::ShowsController < LoginController
       @show = Show.find(params[:id])
     end
 
-    def path_login
-      @path = employee_login_path
+    def path_role_login
+      @path ||= employee_login_path
+      @role = "E"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
