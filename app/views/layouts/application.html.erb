@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Walter+Turncoat' rel='stylesheet' type='text/css'>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
@@ -20,14 +21,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">HACKIMAX</a>
+        <%= link_to 'hackIMAX', root_path, :class => 'navbar-brand' %>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Inicio</a></li>
-          <li><a href="#">Iniciar Sesión</a></li>
+          <li><%= link_to 'Inicio', root_path %></li>
+          <li><%= link_to 'Iniciar Sesión - Corporativo', employee_login_path %></li>
           <li><a href="#">Registro</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
