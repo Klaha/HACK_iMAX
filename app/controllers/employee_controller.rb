@@ -24,7 +24,7 @@ class EmployeeController < LoginController
 
   end
 
-  def destroy #terminando session
+  def destroy_session #terminando session
     # Remove the user id from the session
     @_current_user = session[:current_user_id] = nil
     redirect_to employee_login_path

@@ -1,20 +1,35 @@
-<%= form_for @transactions, url: @path do |f| %>
-  <div class="field">
-    <%= f.label 'Seleccione Función' %><br>
-
-    <%= show_array = Show.all.map { |show| [show.movie.name + " " + show.time.strftime("%I:%M%P").to_s, show.id ] } %>
-    <%= select_tag(:show_id,options_for_select(show_array)) %>
-  </div>
+<%= form_for @transactions, url: @path, method: @method do |f| %>
 
 
-  <div class="field">
-    <%= f.label :Fecha %><br>
-    <%= f.datetime_select :datetime_transaction %>
-  </div>
+    <% if @show.nil?!=true %>
+        <h2><%= @show.movie.name %></h2>
+    <% else %>
+        <div class="field">
+          <%= f.label 'Seleccione Función' %><br>
+          <% show_array = Show.all.map { |show| [show.movie.name + " " + show.time.strftime("%I:%M%P").to_s, show.id ] } %>
+          <%= select_tag(:show_id,options_for_select(show_array)) %>
+        </div>
+    <% end %>
 
-  <div class="actions">
-    <%= f.submit "Comprar" %>
-  </div>
+
+
+    <% if @seats.nil?!=true %>
+
+        <div class="field">
+          <%= label_tag 'Nombre de Cliente:' %>
+          <%= text_field(:user, :name) %>
+        </div>
+
+        <div class="field">
+          <%= label_tag 'Cedula cliente:' %>
+          <%= number_field(:user, :ci ) %>
+        </div>
+
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit :Comprar %>
+    </div>
 <% end %>
 
 <%= link_to 'Back', employee_transactions_path %>

@@ -1,6 +1,8 @@
-class Employee::ShowTransactionsController < ApplicationController
-  before_action :set_show, only: [:show, :edit, :update, :destroy]
-  
+class Employee::ShowTransactionsController < LoginController
+  # before_action :set_show, only: [:show, :edit, :update, :destroy]
+  before_action :set_function_theater
+
+
   def index
     @transactions = ShowTransaction.all
   end
@@ -9,8 +11,7 @@ class Employee::ShowTransactionsController < ApplicationController
   end
 
   def new
-    @transactions = ShowTransaction.new
-    @path = employee_transactions_path
+    @path = new_employee_transaction_path
   end
 
   def create
@@ -37,7 +38,7 @@ class Employee::ShowTransactionsController < ApplicationController
     @path = employee_transaction_path
   end
 
-  def update 
+  def update
     respond_to do |format|
       if @transactions.update(show_params)
         format.html { redirect_to employee_transactions_path, notice: 'Transaction was successfully updated.' }
@@ -48,17 +49,26 @@ class Employee::ShowTransactionsController < ApplicationController
   end
 
   private
-    # # Use callbacks to share common setup or constraints between actions.
-    def set_transaction
-      @transactions = ShowTransaction.find(params[:id])
+  def set_function_theater
+    if params[:theater].nil? == false
+
+      @theater = Theater.find_by(id: params[:theater][:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def transaction_params
-      # movie_id
-      # time
-      # date_show
-      params.require(:show_transactions).permit(:movie_id,:time)
-    end
+  end
+
+
+  # # Use callbacks to share common setup or constraints between actions.
+  def set_transaction
+    @transactions = ShowTransaction.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def transaction_params
+    # movie_id
+    # time
+    # date_show
+    params.require(:show_transactions).permit(:show_id, :user, :seat)
+  end
 
 end

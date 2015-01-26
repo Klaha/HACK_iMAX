@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get   '/employee',        to: 'employee#index'
     get   '/employee/login',  to: 'employee#login'
     post  '/employee/login',  to: 'employee#create_session'
-    get   '/employee/logout', to: 'employee#destroy'
+    get   '/employee/logout', to: 'employee#destroy_session'
 
   ##end employee
 
