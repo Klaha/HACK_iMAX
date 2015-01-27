@@ -34,9 +34,18 @@ ActiveRecord::Schema.define(version: 20150125113712) do
   add_index "seat_shows", ["ticket_id"], name: "index_seat_shows_on_ticket_id"
 
   create_table "seats", force: true do |t|
-    t.integer "row"
-    t.integer "col"
+    t.string "row"
+    t.string "col"
   end
+
+  create_table "show_transactions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "show_id"
+    t.datetime "datetime_transaction"
+  end
+
+  add_index "show_transactions", ["show_id"], name: "index_show_transactions_on_show_id"
+  add_index "show_transactions", ["user_id"], name: "index_show_transactions_on_user_id"
 
   create_table "shows", force: true do |t|
     t.integer  "movie_id"
@@ -57,24 +66,12 @@ ActiveRecord::Schema.define(version: 20150125113712) do
   end
 
   create_table "tickets", force: true do |t|
-    t.integer "transaction_id"
+    t.integer "show_transaction_id"
     t.string  "type_ticket"
     t.float   "price"
   end
 
-  add_index "tickets", ["transaction_id"], name: "index_tickets_on_transaction_id"
-
-  create_table "transactions", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "shows_id"
-    t.integer  "show_id"
-    t.datetime "datetime_transaction"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "transactions", ["show_id"], name: "index_transactions_on_show_id"
-  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id"
+  add_index "tickets", ["show_transaction_id"], name: "index_tickets_on_show_transaction_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

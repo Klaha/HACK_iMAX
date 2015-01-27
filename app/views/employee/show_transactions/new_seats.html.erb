@@ -4,7 +4,7 @@
         <% seats = Seat.where(id:(1..100)) %>
         <% for i in (0...10) %>
             <div class="row">
-              <div class="col-md-offset-1"></div>
+              <div class="col-md-1"></div>
               <% for j in (1..10) %>
                   <div class="col-md-1 bg-success">
                     <% if @seats_hash[(j+i*10)].nil? %>
@@ -18,7 +18,7 @@
                     <% end %>
                   </div>
               <% end %>
-              <div class="col-md-offset-1"></div>
+              <div class="col-md-1"></div>
             </div>
 
         <% end %>
