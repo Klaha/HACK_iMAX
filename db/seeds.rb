@@ -60,3 +60,19 @@ if User.find_by(email:"admin@admin.com").nil?
   u1.role="A"
   u1.save
 end
+
+if Seat.find_by(id:300).nil?
+  for i in (:A..:J)
+    for j in (1..10)
+      seat = Seat.new(row: i.to_s, col: j)
+      seat.save
+    end
+  end
+
+  for i in (:A..:U)
+    for j in (1..20)
+      seat = Seat.new(row: i.to_s, col: j)
+      seat.save
+    end
+  end
+end

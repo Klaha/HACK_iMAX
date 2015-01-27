@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="seats col-md-12">
+    <% if @theater.type_theater == 'N' %>
+        <% seats = Seat.where(id:(1..100)) %>
+        <% for i in (0...10) %>
+            <div class="row">
+              <div class="col-md-offset-1"></div>
+              <% for j in (1..10) %>
+                  <div class="col-md-1 bg-success">
+                    <% if @seats_hash[(j+i*10)].nil? %>
+                        <div id="seat-<%= (j+i*10) %>" class="seat available seats1">
+                          <p><%= seats[(j+i*10)-1].row.to_s + '-' + seats[(j+i*10)-1].col.to_s %></p>
+                        </div>
+                    <% else %>
+                        <div class="seat <%= @seats_hash[i][1] %> seats1">
+                          <p><%= @seats_hash[(j+i*10)][0][0].to_s + '-' + @seats_hash[(j+i*10)][0][1].to_s %></p>
+                        </div>
+                    <% end %>
+                  </div>
+              <% end %>
+              <div class="col-md-offset-1"></div>
+            </div>
+
+        <% end %>
+    <% else %>
+        <% seats = Seat.where(id:(100..300)) %>
+
+    <% end %>
+  </div>
+
+</div>

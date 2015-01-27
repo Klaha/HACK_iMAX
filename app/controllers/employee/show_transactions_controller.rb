@@ -1,6 +1,6 @@
 class Employee::ShowTransactionsController < LoginController
   # before_action :set_show, only: [:show, :edit, :update, :destroy]
-  before_action :set_function_theater
+  before_action :set_show, only: [:seats, :client, :edit, :update, :destroy, :show, :new_seats]
 
 
   def index
@@ -11,7 +11,24 @@ class Employee::ShowTransactionsController < LoginController
   end
 
   def new
-    @path = new_employee_transaction_path
+    @path = employee_transactions_new_seats_path
+  end
+
+  def new_seats
+    @theater = @show.theater
+    @seats_hash = {}
+    seatshows = SeatShow.find_by(show_id: @show.id)
+
+    if seatshows.nil?!=true
+      seatshows.each do |ss|
+        @seats_hash[ss.seat.id] = [ [ss.seat.row,ss.seat.col] , ss.status]
+      end
+    end
+
+  end
+
+  def client
+    # code here
   end
 
   def create
@@ -49,26 +66,21 @@ class Employee::ShowTransactionsController < LoginController
   end
 
   private
-  def set_function_theater
-    if params[:theater].nil? == false
-
-      @theater = Theater.find_by(id: params[:theater][:id])
-    end
-
+  def set_show
+    @show= Show.find(params[:show_id])
   end
-
 
   # # Use callbacks to share common setup or constraints between actions.
-  def set_transaction
-    @transactions = ShowTransaction.find(params[:id])
-  end
+  # def set_transaction
+  #   @transactions = ShowTransaction.find(params[:id])
+  # end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def transaction_params
-    # movie_id
-    # time
-    # date_show
-    params.require(:show_transactions).permit(:show_id, :user, :seat)
-  end
+  # def transaction_params
+  #   # movie_id
+  #   # time
+  #   # date_show
+  #   params.require(:show_transactions).permit(:show_id, :seats, :user)
+  # end
 
 end

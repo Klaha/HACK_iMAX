@@ -15,8 +15,8 @@ class CreateTablesForTransactionsEmployee < ActiveRecord::Migration
     end
 
     create_table :seats do |t|
-      t.integer :row
-      t.integer :col
+      t.string :row
+      t.string :col
       t.timestamp
     end
 

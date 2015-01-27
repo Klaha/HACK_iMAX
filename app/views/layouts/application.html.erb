@@ -11,32 +11,34 @@
 </head>
 <body>
 <div class="container">
-  <nav class="navbar navbar-inverse" style="border-radius:0">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <%= link_to 'hackIMAX', root_path, :class => 'navbar-brand' %>
-      </div>
+  <div class="row">
+    <nav class="navbar navbar-inverse" style="border-radius:0">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to 'hackIMAX', root_path, :class => 'navbar-brand' %>
+        </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
-        <ul class="nav navbar-nav">
-          <li><%= link_to 'Inicio', root_path %></li>
-          <li><%= link_to 'Iniciar Sesión - Corporativo', employee_login_path %></li>
-          <li><a href="#">Registro</a></li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'Inicio', root_path %></li>
+            <li><%= link_to 'Iniciar Sesión - Corporativo', employee_login_path %></li>
+            <li><a href="#">Registro</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
 
   <%= yield %>
-  
+
 </div>
 
 </body>
