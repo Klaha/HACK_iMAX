@@ -23,6 +23,9 @@ $().ready(function(){
     });
 
     $available_seats.click(function(){
-
+       //console.log(this.id);
+        $this = $(this);
+        $this.removeClass('available');
+        $this.addClass('seat_clicked');
     });
 });
