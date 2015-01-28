@@ -1,28 +1,45 @@
-  <div class="seats">
-    <% if @theater.type_theater == 'N' %>
-        <% seats = Seat.where(id:(1..100)) %>
-        <% for i in (0...10) %>
-            <div class="row">
-              <div class="col-md-1"></div>
-              <% for j in (1..10) %>
-                  <div class="col-md-1 bg-success">
-                    <% if @seats_hash[(j+i*10)].nil? %>
-                        <div id="seat-<%= (j+i*10) %>" class="seat available seats1">
-                          <p><%= seats[(j+i*10)-1].row + '-' + seats[(j+i*10)-1].col %></p>
-                        </div>
-                    <% else %>
-                        <div class="seat <%= @seats_hash[i][1] %> seats1">
-                          <p><%= @seats_hash[(j+i*10)][0][0] + '-' + @seats_hash[(j+i*10)][0][1] %></p>
-                        </div>
-                    <% end %>
-                  </div>
-              <% end %>
-              <div class="col-md-1"></div>
-            </div>
-
-        <% end %>
-    <% else %>
-        <% seats = Seat.where(id:(100..300)) %>
-
-    <% end %>
+<%= javascript_include_tag 'employee/seats'   %>
+<%= stylesheet_link_tag 'employee/seats' %>
+<div class="entradas">
+  <div class="row">
+    <div class="col-md-2">
+      <p class="text-primary">Numero de entradas:</p>
+      <input id="n-entradas" type="text"/>
+    </div>
   </div>
+</div>
+<div class="seats">
+  <% if @theater.type_theater == 'N' %>
+      <% seats = Seat.where(id:(1..100)) %>
+      <% for i in (0...10) %>
+          <div class="row">
+            <div class="col-md-1"></div>
+            <% for j in (1..10) %>
+
+                  <% if @seats_hash[(j+i*10)].nil? %>
+                      <div id="seat-<%= (j+i*10) %>" class="seat available seats1 col-md-1">
+                        <p><%= seats[(j+i*10)-1].row + '-' + seats[(j+i*10)-1].col %></p>
+                      </div>
+                  <% else %>
+                      <div class="seat <%= @seats_hash[i][1] %> seats1">
+                        <p><%= @seats_hash[(j+i*10)][0][0] + '-' + @seats_hash[(j+i*10)][0][1] %></p>
+                      </div>
+                  <% end %>
+
+            <% end %>
+            <div class="col-md-1"></div>
+          </div>
+
+      <% end %>
+  <% else %>
+      <% seats = Seat.where(id:(100..300)) %>
+
+  <% end %>
+</div>
+
+<%= form_tag @path, id: 'formulario_seats' do %>
+    <%= text_field_tag 'show_id', nil, { :id => 'show_id',
+                                         :type => 'hidden',
+                                         :value => @show.id} %>
+    <%=submit_tag :continuar %>
+<% end %>

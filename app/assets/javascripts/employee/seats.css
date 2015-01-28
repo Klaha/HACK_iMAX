@@ -1,0 +1,30 @@
+#n-entradas {
+    margin-bottom: 15px;
+}
+
+#formulario_seats{
+    margin-top:15px;
+}
+
+.seat{
+
+}
+.available{
+    background-color: greenyellow;
+}
+
+.busy{
+    background-color: red;
+}
+
+.reserved{
+    background-color: darkblue;
+    color: white;
+}
+
+.seat_clicked{
+    background-color: yellow;
+}
+.seats1{
+
+}

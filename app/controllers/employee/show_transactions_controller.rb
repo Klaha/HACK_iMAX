@@ -15,6 +15,7 @@ class Employee::ShowTransactionsController < LoginController
   end
 
   def new_seats
+    @path = employee_transactions_new_seats_client_path
     @theater = @show.theater
     @seats_hash = {}
     seatshows = SeatShow.find_by(show_id: @show.id)
@@ -27,8 +28,8 @@ class Employee::ShowTransactionsController < LoginController
 
   end
 
-  def client
-    # code here
+  def new_seats_client
+    nil.length
   end
 
   def create
@@ -67,7 +68,11 @@ class Employee::ShowTransactionsController < LoginController
 
   private
   def set_show
-    @show= Show.find(params[:show_id])
+    if params[:show_id].nil?
+      redirect_to new_employee_transaction_path
+    else
+      @show= Show.find(params[:show_id])
+    end
   end
 
   # # Use callbacks to share common setup or constraints between actions.
