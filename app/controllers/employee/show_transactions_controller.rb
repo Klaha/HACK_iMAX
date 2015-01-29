@@ -18,7 +18,7 @@ class Employee::ShowTransactionsController < LoginController
     @path = employee_transactions_new_seats_client_path
     @theater = @show.theater
     @seats_hash = {}
-    seatshows = SeatShow.find_by(show_id: @show.id)
+    seatshows = SeatShow.where(show_id: @show.id)
 
     if seatshows.nil?!=true
       seatshows.each do |ss|
@@ -30,6 +30,7 @@ class Employee::ShowTransactionsController < LoginController
 
   def new_seats_client
     nil.length
+    # params['seats_arr'];
   end
 
   def create

@@ -37,3 +37,38 @@
   font-family: 'Walter Turncoat', cursive;
   font-size: 20px;
 }
+
+/* EMPLOYEE SEATS */
+
+#n-tickets {
+    margin-bottom: 15px;
+}
+
+#formulario_seats{
+    margin-top:15px;
+}
+
+.seat{
+
+}
+.available{
+    background-color: greenyellow;
+}
+
+.busy{
+    background-color: red;
+}
+
+.reserved{
+    background-color: darkblue;
+    color: white;
+}
+
+.seat_clicked{
+    background-color: yellow;
+}
+.seats1{
+
+}
+
+/*FIN EMPLOYEE SEATS*/

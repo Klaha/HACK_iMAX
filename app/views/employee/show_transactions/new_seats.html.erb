@@ -1,10 +1,8 @@
-<%= javascript_include_tag 'employee/seats'   %>
-<%= stylesheet_link_tag 'employee/seats' %>
 <div class="entradas">
   <div class="row">
     <div class="col-md-2">
       <p class="text-primary">Numero de entradas:</p>
-      <input id="n-entradas" type="text"/>
+      <input id="n-tickets" type="text"/>
     </div>
   </div>
 </div>
@@ -41,5 +39,9 @@
     <%= text_field_tag 'show_id', nil, { :id => 'show_id',
                                          :type => 'hidden',
                                          :value => @show.id} %>
-    <%=submit_tag :continuar %>
+    <%= text_field_tag 'seats_arr', nil, { :id => 'seats_arr',
+                                         :type => 'hidden'} %>
+
+    <%=submit_tag :continuar, {:type =>'button',
+                               :id=>'submit_button'} %>
 <% end %>

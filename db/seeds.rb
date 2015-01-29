@@ -64,18 +64,10 @@ end
 if Seat.find_by(id:300).nil?
   Seat.transaction do
     for i in (:A..:J)
-      for j in (1..10)
-        seat = Seat.new(row: i.to_s, col: j)
-        seat.save
-      end
-    end
-
-    for i in (:A..:T)
       for j in (1..20)
-        seat = Seat.new(row: i.to_s, col: j)
+        seat = Seat.new(row: i, col: j)
         seat.save
       end
     end
   end
-
 end
