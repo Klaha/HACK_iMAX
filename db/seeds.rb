@@ -71,3 +71,8 @@ if Seat.find_by(id:300).nil?
     end
   end
 end
+
+if Config.take.nil?
+  c = Config.new(price_ticket_type_1: 500)
+  c.save
+end
