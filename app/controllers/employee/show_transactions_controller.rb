@@ -1,6 +1,6 @@
 class Employee::ShowTransactionsController < LoginController
   # before_action :set_show, only: [:show, :edit, :update, :destroy]
-  before_action :set_show, only: [:seats, :client, :edit, :update, :destroy, :show, :new_seats]
+  before_action :set_show, only: [:seats, :client, :create, :show, :new_seats]
 
 
   def index
@@ -23,29 +23,17 @@ class Employee::ShowTransactionsController < LoginController
 
     if seatshows.nil?!=true
       seatshows.each do |ss|
+        # [[i,j],status]
         @seats_hash[ss.seat.id] = [ [ss.seat.row,ss.seat.col] , ss.status]
       end
     end
 
   end
 
-  def new_seats_client
-    @path = employee_transactions_path
-    @user = User.new
-    # params['seats_arr'];
-    # ids = params['seats_arr'].split 'seat-'
-    #
-    # for i in (1..ids.length)
-    #
-    # end
-
-    # nil.length
-  end
-
   def create
     seats = params['seats_arr'].split
     show_id = params['show_id']
-    ticketse = seats.length - params['ticketsN'].to_i
+    tickets_e = seats.length - params['ticketsN'].to_i
 
     ci = params['user']['ci']
     uname = params['user']['name']
@@ -59,14 +47,23 @@ class Employee::ShowTransactionsController < LoginController
       user.save
     end
     @price = Config.take.price_ticket_type_1
+    seats.each do |seat_id|
+      if SeatShow.where(id:seat_id,show_id: @show.movie_id ).length==0
+      else
+        redirect_to new_employee_transaction_path ,notice: 'Error en los Asientos.'
+        return
+      end
+    end
     ShowTransaction.transaction do
 
       @transactions = ShowTransaction.new
       @transactions.user_id = user.id
       @transactions.show_id = show_id
       @transactions.datetime_transaction = DateTime.now
+      @transactions.status = "paid"
       @transactions.save
 
+      #ARREGLO DE IDS DE ASIENTOS
       seats.each do |seat_id|
         ss = SeatShow.new
         ss.seat_id = seat_id
@@ -75,9 +72,9 @@ class Employee::ShowTransactionsController < LoginController
 
         ticket = Ticket.new
         ticket.show_transaction_id = @transactions.id
-        if ticketse>0
+        if tickets_e>0
           # E DE dEscuento xD
-          ticketse--
+          tickets_e-=1
           ticket.price = @price*0.5
           ticket.type_ticket = 'E'
         else
@@ -93,42 +90,15 @@ class Employee::ShowTransactionsController < LoginController
 
         # ss.ticket_id = ticket.id
       end
-
     end
 
-    # nil.length
-    # nil.length
-    # @transactions = ShowTransaction.new(transaction_params)
-    # @transactions.date_transaction = Date.today
-    # respond_to do |format|
-    #   if @transactions.save
-    #     format.html { redirect_to employee_show_path @show.id, notice: 'Show was successfully created.' }
-    #     format.json { render :show, status: :created, location: @show }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @show.errors, status: :unprocessable_entity }
-    #   end
-    # end
-  end
+    if @transactions.valid?
+      redirect_to employee_transactions_path
+    else
 
-  def destroy
-    @transactions.destroy
-    redirect_to employee_transactions_path
-  end
-
-  def edit
-    @path = employee_transaction_path
-  end
-
-  def update
-    respond_to do |format|
-      if @transactions.update(show_params)
-        format.html { redirect_to employee_transactions_path, notice: 'Transaction was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
     end
   end
+
 
   private
   def set_show

@@ -4,6 +4,7 @@ class CreateTablesForTransactionsEmployee < ActiveRecord::Migration
       t.references :user, index: true
       t.references :show, index: true
       t.datetime :datetime_transaction
+      t.string :status
       #t.timestamps
     end
 

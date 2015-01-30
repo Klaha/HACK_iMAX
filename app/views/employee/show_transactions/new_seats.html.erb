@@ -3,7 +3,7 @@
   <div class="col-md 6">
     <h3 id="what-to-do" class="text-primary text-center">
       Indique el número de entradas
-      </h2>
+    </h3>
   </div>
 </div>
 <div class="row">
@@ -33,8 +33,8 @@
                       <p><%= seats[(j+i*10)-1].row + '-' + seats[(j+i*10)-1].col.to_s %></p>
                     </div>
                 <% else %>
-                    <div class="seat <%= @seats_hash[i][1] %> seats1">
-                      <p><%= @seats_hash[(j+i*10)][0][0] + '-' + @seats_hash[(j+i*10)][0][1] %></p>
+                    <div class="seat <%= @seats_hash[(j+i*10)][1] %> seats1 col-md-1">
+                      <p><%= @seats_hash[(j+i*10)][0][0] + '-' + @seats_hash[(j+i*10)][0][1].to_s %></p>
                     </div>
                 <% end %>
 
@@ -44,7 +44,6 @@
 
       <% end %>
   <% else %>
-      <% seats = Seat.where(id:(100..300)) %>
 
   <% end %>
 </div>
@@ -76,6 +75,7 @@
         <%= text_field :user, :ci, {:id => 'ci-user-input'} %>
         <%= number_field_tag :ticketsN, nil, {:class => 'hidden',
                                           :id => 'ticketsN-id'} %>
+
         <%=submit_tag :Continuar, {:type =>'button',
                                    :id=>'submit_button',
                                    :class =>'hidden btn btn-success',

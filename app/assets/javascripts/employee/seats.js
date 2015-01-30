@@ -3,25 +3,25 @@ $(function(){
     var $available_seats = $('.available');
     //var $form_append = $('#formulario_seats');
     var tickets=0;
-    var clickeds=0;
+    var clicked_times=0;
     var ticketsN=0;
     var $clicked_seats;
     var $todo = $('#what-to-do');
-    var $buttom_submit = $('#submit_button');
-    var $userinputs = $('#user-inputs');
+    var $button_submit = $('#submit_button');
+    var $user_inputs = $('#user-inputs');
     var $inputTickets1 = $('#tickets-1');
     var $inputTickets2 = $('#tickets-2');
-    var $seatsdiv = $('#seats-div');
+    var $seats_div = $('#seats-div');
     //console.log($('#n-tickets'));
 
     $('#n-tickets').on('keyup',function(){
         tickets = $(this).val();
-        clickeds=0;
+        clicked_times=0;
         //console.log($(this));
         $clicked_seats = $('.seat_clicked');
 
-        if (!$userinputs.hasClass('hidden'))
-            $userinputs.addClass('hidden');
+        if (!$user_inputs.hasClass('hidden'))
+            $user_inputs.addClass('hidden');
 
         $.each($clicked_seats,function(i,val){
             //console.log($(val));
@@ -43,8 +43,8 @@ $(function(){
             ticketsN = tickets;
             $('#p-tickets1').text(0);
 
-            if ($seatsdiv.hasClass('hidden'))
-                $seatsdiv.removeClass('hidden');
+            if ($seats_div.hasClass('hidden'))
+                $seats_div.removeClass('hidden');
 
         }
         else{
@@ -54,8 +54,8 @@ $(function(){
             if (!$inputTickets2.hasClass('hidden'))
                 $inputTickets2.addClass('hidden');
 
-            if (!$seatsdiv.hasClass('hidden'))
-                $seatsdiv.addClass('hidden');
+            if (!$seats_div.hasClass('hidden'))
+                $seats_div.addClass('hidden');
 
 
             //alert ('Mal numero de tickets');
@@ -86,13 +86,13 @@ $(function(){
         if (tickets==0)
             alert('indique cantidad de entradas');
         else if ($this.hasClass('seat_clicked')){
-            clickeds--;
-            $buttom_submit.attr('type','button');
+            clicked_times--;
+            $button_submit.attr('type','button');
             $this.removeClass('seat_clicked');
             $this.addClass('available');
             $todo.text('Seleccione los asientos deseados.');
-            if (!$userinputs.hasClass('hidden'))
-                $userinputs.addClass('hidden');
+            if (!$user_inputs.hasClass('hidden'))
+                $user_inputs.addClass('hidden');
 
             if ($inputTickets1.hasClass('hidden')){
                 $inputTickets1.removeClass('hidden');
@@ -101,15 +101,15 @@ $(function(){
 
 
 
-        } else if (clickeds<tickets){
+        } else if (clicked_times<tickets){
 
             if ($this.hasClass('available') && (ticketsN>=0 && ticketsN<=tickets)){
                 $this.removeClass('available');
                 $this.addClass('seat_clicked');
-                clickeds++;
+                clicked_times++;
                 var res = [];
-                if (clickeds==tickets){
-                    $buttom_submit.attr('type','submit');
+                if (clicked_times==tickets){
+                    $button_submit.attr('type','submit');
                     $clicked_seats = $('.seat_clicked');
                     $.each($clicked_seats,function(i,val){
                         res.push($(val).attr('id'));
@@ -126,7 +126,7 @@ $(function(){
                     //console.log(straux);
 
                     $todo.text('Indique Datos de Usuario más abajo.');
-                    $userinputs.removeClass('hidden');
+                    $user_inputs.removeClass('hidden');
                     var price = parseFloat($('#price-shows').text());
                     $('#sub-entradas-N').text('Entradas normales: '+price+' x '+
                     ticketsN+
@@ -176,12 +176,12 @@ $(function(){
     $userNameInput.keyup(function(){
         console.log('ci');
         if ($userCiInput.val()!=""){
-            if ($buttom_submit.hasClass('hidden'))
-                $buttom_submit.removeClass('hidden');
+            if ($button_submit.hasClass('hidden'))
+                $button_submit.removeClass('hidden');
         }
         else
-        if (!$buttom_submit.hasClass('hidden'))
-            $buttom_submit.addClass('hidden');
+        if (!$button_submit.hasClass('hidden'))
+            $button_submit.addClass('hidden');
 
 
     });
@@ -189,12 +189,12 @@ $(function(){
     $userCiInput.keyup(function(){
         console.log('ci');
         if ($userNameInput.val()!=""){
-            if ($buttom_submit.hasClass('hidden'))
-                $buttom_submit.removeClass('hidden');
+            if ($button_submit.hasClass('hidden'))
+                $button_submit.removeClass('hidden');
         }
         else
-        if (!$buttom_submit.hasClass('hidden'))
-            $buttom_submit.addClass('hidden');
+        if (!$button_submit.hasClass('hidden'))
+            $button_submit.addClass('hidden');
 
 
     });
