@@ -21,7 +21,7 @@
     <tbody>
       <% @movie.shows.each do |m| %>
         <tr>
-            <td><%= m.time.strftime("%I:%M" + " %p") %> Sala: <%= m.theater_id %>&nbsp;&nbsp;&nbsp;<%= link_to 'Comprar' %></td>
+            <td><%= m.time.strftime("%I:%M" + " %p") %> Sala: <%= m.theater_id %>&nbsp;&nbsp;&nbsp;<%= link_to 'Comprar', cartelera_seats_path(m) %></td>
         </tr>
       <% end %>
     </tbody>

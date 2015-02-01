@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md 6">
+    <h3 id="what-to-do" class="text-primary text-center">
+      Indique el número de entradas
+    </h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <p class="text-primary">Numero de entradas:</p>
+    <input id="n-tickets" type="text"/>
+  </div>
+  <div id="tickets-1"  class="col-md-2 hidden">
+    <p class="text-primary">Entradas Básicas:</p>
+    <input id="input-tickets1" type="text"/>
+  </div>
+  <div id="tickets-2" class="col-md-3 hidden">
+    <p class="text-primary">Entradas con Descuento:</p>
+    <p id="p-tickets1" class="text-success"></p>
+  </div>
+</div>
+<div id="seats-div" class="hidden">
+  
+      <% seats = Seat.where(col:(1..10)) %>
+      <% for i in (0...10) %>
+          <div class="row">
+            <div class="col-md-1"></div>
+            <% for j in (1..10) %>
+
+                <% if @seats_hash[(j+i*10)].nil? %>
+                    <div id="seat-<%= (j+i*10) %>" class="seat available seats1 col-md-1">
+                      <p><%= seats[(j+i*10)-1].row + '-' + seats[(j+i*10)-1].col.to_s %></p>
+                    </div>
+                <% else %>
+                    <div class="seat <%= @seats_hash[(j+i*10)][1] %> seats1 col-md-1">
+                      <p><%= @seats_hash[(j+i*10)][0][0] + '-' + @seats_hash[(j+i*10)][0][1].to_s %></p>
+                    </div>
+                <% end %>
+
+            <% end %>
+            <div class="col-md-1"></div>
+          </div>
+
+      <% end %>
+
+</div>
+
+<%= form_tag @path, id: 'formulario_seats' do %>
+    <%= text_field_tag 'show_id', nil, { :id => 'show_id',
+                                         :type => 'hidden',
+                                         :value => @show.id} %>
+    <%= text_field_tag 'seats_arr', nil, { :id => 'seats_arr',
+                                           :type => 'hidden'} %>
+
+    <div id="user-inputs" class="row hidden">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <h4 class="text-success text-center">Precio entradas: <span id="price-shows"><%= @price %></span></h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-2">
+        <%= label nil,'Nombre :',style: 'margin-bottom:15px;' %>
+        <%= label_tag 'Cedula de Identidad :' %>
+      </div>
+      <div class="col-md-2">
+        <%= text_field :user, :name, {:style => 'margin-bottom:15px;',
+                                      :id => 'name-user-input'}  %>
+        <%= text_field :user, :ci, {:id => 'ci-user-input'} %>
+        <%= number_field_tag :ticketsN, nil, {:class => 'hidden',
+                                          :id => 'ticketsN-id'} %>
+
+        <%=submit_tag :Continuar, {:type =>'button',
+                                   :id=>'submit_button',
+                                   :class =>'hidden btn btn-success',
+                                   :style => 'margin-top:15px;'} %>
+      </div>
+      <div class="col-md-4">
+        <h3 style="margin-top:0px;">Subtotal: </h3>
+        <p id="sub-entradas-N" ></p>
+        <p id="sub-entradas-E" ></p>
+        <h3>Total: <span id="total-entradas" class="text-success"></span></h3>
+      </div>
+    </div>
+
+<% end %>
