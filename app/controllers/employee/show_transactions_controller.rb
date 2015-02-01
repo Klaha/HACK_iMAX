@@ -18,7 +18,7 @@ class Employee::ShowTransactionsController < LoginController
     @path = employee_transactions_path
     @theater = @show.theater
     @seats_hash = {}
-    @price = Config.take.price_ticket_type_1
+    @price = Setting.take.price_ticket_type_1
     seatshows = SeatShow.where(show_id: @show.id)
 
     if seatshows.nil?!=true
@@ -46,7 +46,7 @@ class Employee::ShowTransactionsController < LoginController
       user.role = 'C'
       user.save
     end
-    @price = Config.take.price_ticket_type_1
+    @price = Setting.take.price_ticket_type_1
     seats.each do |seat_id|
       if SeatShow.where(id:seat_id,show_id: @show.movie_id ).length==0
       else

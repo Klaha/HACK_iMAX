@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   ##cartelera
     get '/cartelera', to: 'cartelera#index' 
     get 'cartelera/:id', to: 'cartelera#show', as: 'cartelera_show'
+    get 'cartelera/:id/seats', to: 'cartelera#seats', as: 'cartelera_seats'
   ##end cartelera
 
   ##employee
