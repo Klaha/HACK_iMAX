@@ -1,6 +1,5 @@
 <p id="notice" class="text-danger"><%= notice %></p>
 <%= form_tag @path, method: :get do %>
-<%= @path %>
     <div class="field">
       <%= label_tag 'Seleccione Función' %><br>
       <% show_array = Show.all.map { |show| [show.movie.name +
@@ -10,8 +9,8 @@
     </div>
 
     <div class="actions">
-      <%= submit_tag :Continuar %>
+      <%= submit_tag :Continuar, class: 'btn btn-primary margintop15' %>
     </div>
 <% end %>
 
-<%= link_to 'Back', employee_transactions_path %>
+<%= link_to 'Back', employee_transactions_path,class:'btn btn-primary margintop15' %>

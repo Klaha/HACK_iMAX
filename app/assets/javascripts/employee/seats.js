@@ -144,7 +144,7 @@ $(function(){
                         $inputTickets1.addClass('hidden');
                         $inputTickets2.addClass('hidden');
                     }
-                    console.log(ticketsN);
+                    //console.log(ticketsN);
                     $('#ticketsN-id').val(ticketsN);
 
                 }
@@ -174,7 +174,7 @@ $(function(){
     var $userCiInput = $('#ci-user-input');
 
     $userNameInput.keyup(function(){
-        console.log('ci');
+        //console.log('ci');
         if ($userCiInput.val()!=""){
             if ($button_submit.hasClass('hidden'))
                 $button_submit.removeClass('hidden');
@@ -187,7 +187,7 @@ $(function(){
     });
 
     $userCiInput.keyup(function(){
-        console.log('ci');
+        //console.log('ci');
         if ($userNameInput.val()!=""){
             if ($button_submit.hasClass('hidden'))
                 $button_submit.removeClass('hidden');
@@ -199,7 +199,27 @@ $(function(){
 
     });
 
+    var $select_payment=$('#payment_method');
+    var $div_card_payment = $('#div-credit-card');
+    $select_payment.on("change",function(){
+       if ($select_payment.val()=='credit_card'){
+           if ($div_card_payment.hasClass('hidden'))
+               $div_card_payment.removeClass('hidden');
+       }
+        else
+       {
+           if (!$div_card_payment.hasClass('hidden'))
+               $div_card_payment.addClass('hidden');
+       }
+    });
+
+
 //    continue...
+
+    var $card1 = $('#card_number_id');
+    var $card2 = $('#card_name_id');
+    var $card3 = $('#card_exp_month');
+    var $card4 = $('#card_exp_year');
 
 
 });

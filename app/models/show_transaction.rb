@@ -3,7 +3,9 @@ class ShowTransaction < ActiveRecord::Base
   belongs_to :show
   belongs_to :user
   validates :status, inclusion: { in: %w(reserved paid),
-                                  message: "%{value} is not a valid size" }
+                                  message: "%{value} is not a valid status" }
+  validates :payment_method, inclusion: {in: %w(cash credit_card check),
+                                  message: "%{value} is not a valid payment method"}
   def total_transaction
     result = 0
     self.tickets.each do |t|

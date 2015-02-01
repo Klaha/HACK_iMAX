@@ -5,6 +5,7 @@ class CreateTablesForTransactionsEmployee < ActiveRecord::Migration
       t.references :show, index: true
       t.datetime :datetime_transaction
       t.string :status
+      t.string :payment_method
       #t.timestamps
     end
 

@@ -31,6 +31,7 @@ class Employee::ShowTransactionsController < LoginController
   end
 
   def create
+    nil.length
     seats = params['seats_arr'].split
     show_id = params['show_id']
     tickets_e = seats.length - params['ticketsN'].to_i
