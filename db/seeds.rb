@@ -61,7 +61,7 @@ if User.find_by(email:"admin@admin.com").nil?
   u1.save
 end
 
-if Seat.find_by(id:300).nil?
+if Seat.find_by(id:200).nil?
   Seat.transaction do
     for i in (:A..:J)
       for j in (1..20)
