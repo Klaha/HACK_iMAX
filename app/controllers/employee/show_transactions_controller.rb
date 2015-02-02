@@ -31,8 +31,6 @@ class Employee::ShowTransactionsController < LoginController
   end
 
   def create
-    nil.length
-
 
 =begin
     "card"=>{"number"=>"1231231231",
