@@ -1,7 +1,8 @@
 class Employee::ShowTransactionsController < LoginController
   # before_action :set_show, only: [:show, :edit, :update, :destroy]
+  before_action :path_role_login
   before_action :set_show, only: [:seats, :client, :create, :show, :new_seats]
-
+  before_action :require_login
 
   def index
     @transactions = ShowTransaction.all
@@ -31,7 +32,7 @@ class Employee::ShowTransactionsController < LoginController
   end
 
   def create
-
+  # nil.length
 =begin
     "card"=>{"number"=>"1231231231",
  "name_in"=>"ads a asdaw a",
@@ -79,7 +80,8 @@ class Employee::ShowTransactionsController < LoginController
         @transactions.user_id = user.id
         @transactions.show_id = show_id
         @transactions.datetime_transaction = DateTime.now
-        @transactions.status = "paid"
+        @transactions.status = 'paid'
+        @transactions.payment_method=params['payment_method']
         @transactions.save
 
         #ARREGLO DE IDS DE ASIENTOS
@@ -113,6 +115,7 @@ class Employee::ShowTransactionsController < LoginController
 
       if @transactions.valid?
         redirect_to employee_transactions_path
+        return
       else
 
       end
@@ -120,6 +123,11 @@ class Employee::ShowTransactionsController < LoginController
   end
 
   private
+  def path_role_login
+    @path ||= employee_login_path
+    @role = "E"
+  end
+
   def check_pay(card_hash)
     return true
   end
