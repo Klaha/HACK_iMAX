@@ -14,8 +14,8 @@ $(function(){
     var $seats_div = $('#seats-div');
     //console.log($('#n-tickets'));
 
-    $('#n-tickets').on('keyup',function(){
-        tickets = $(this).val();
+    $('#n-tickets').on('change',function(){
+        tickets = parseInt($(this).val());
         clicked_times=0;
         //console.log($(this));
         $clicked_seats = $('.seat_clicked');
@@ -64,8 +64,8 @@ $(function(){
     });
 
 
-    $('#input-tickets1').keyup(function(){
-        ticketsN = $(this).val();
+    $('#input-tickets1').on('change',function(){
+        ticketsN = parseInt($(this).val());
         if ( ticketsN>=0 && ticketsN<=tickets){
             $todo.text('Seleccione los asientos deseados.');
             $('#p-tickets1').text(tickets - ticketsN);
