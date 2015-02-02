@@ -32,76 +32,100 @@ class Employee::ShowTransactionsController < LoginController
 
   def create
     nil.length
-    seats = params['seats_arr'].split
-    show_id = params['show_id']
-    tickets_e = seats.length - params['ticketsN'].to_i
 
-    ci = params['user']['ci']
-    uname = params['user']['name']
 
-    user = User.find_by(ci: ci)
-    if user.nil?
-      user = User.new
-      user.ci = ci
-      user.name = uname
-      user.role = 'C'
-      user.save
-    end
-    @price = Setting.take.price_ticket_type_1
-    seats.each do |seat_id|
-      if SeatShow.where(id:seat_id,show_id: @show.movie_id ).length==0
-      else
-        redirect_to new_employee_transaction_path ,notice: 'Error en los Asientos.'
-        return
+=begin
+    "card"=>{"number"=>"1231231231",
+ "name_in"=>"ads a asdaw a",
+ "exp_month"=>"12",
+ "exp_year"=>"21"},
+=end
+
+    if check_pay params['card']
+      seats = params['seats_arr'].split
+      show_id = params['show_id']
+      tickets_e = seats.length - params['ticketsN'].to_i
+
+      ci = params['user']['ci']
+      uname = params['user']['name']
+
+      user = User.find_by(ci: ci)
+      if user.nil?
+        user = User.new
+        user.ci = ci
+        user.name = uname
+        user.role = 'C'
+        user.save
       end
-    end
-    ShowTransaction.transaction do
+      @price = Setting.take.price_ticket_type_1
 
-      @transactions = ShowTransaction.new
-      @transactions.user_id = user.id
-      @transactions.show_id = show_id
-      @transactions.datetime_transaction = DateTime.now
-      @transactions.status = "paid"
-      @transactions.save
+      # seats.each do |seat_id|
+      #   if SeatShow.where(id:seat_id,show_id: @show.movie_id ).length==0
+      #   else
+      #     redirect_to new_employee_transaction_path ,notice: 'Error en los Asientos.'
+      #     return
+      #   end
+      # end
 
-      #ARREGLO DE IDS DE ASIENTOS
-      seats.each do |seat_id|
-        ss = SeatShow.new
-        ss.seat_id = seat_id
-        ss.show_id = show_id
-        ss.status = 'busy'
+      ShowTransaction.transaction do
 
-        ticket = Ticket.new
-        ticket.show_transaction_id = @transactions.id
-        if tickets_e>0
-          # E DE dEscuento xD
-          tickets_e-=1
-          ticket.price = @price*0.5
-          ticket.type_ticket = 'E'
-        else
-          ticket.price = @price
-          ticket.type_ticket = 'N'
+        seats.each do |seat_id|
+          if SeatShow.where(id:seat_id,show_id: @show.movie_id ).length==0
+          else
+            redirect_to new_employee_transaction_path ,notice: 'Error en los Asientos.'
+            return
+          end
         end
 
-        ticket.save
+        @transactions = ShowTransaction.new
+        @transactions.user_id = user.id
+        @transactions.show_id = show_id
+        @transactions.datetime_transaction = DateTime.now
+        @transactions.status = "paid"
+        @transactions.save
 
-        ss.ticket_id = ticket.id
-        ss.save
+        #ARREGLO DE IDS DE ASIENTOS
+        seats.each do |seat_id|
+          ss = SeatShow.new
+          ss.seat_id = seat_id
+          ss.show_id = show_id
+          ss.status = 'busy'
+
+          ticket = Ticket.new
+          ticket.show_transaction_id = @transactions.id
+          if tickets_e>0
+            # E DE dEscuento xD
+            tickets_e-=1
+            ticket.price = @price*0.5
+            ticket.type_ticket = 'E'
+          else
+            ticket.price = @price
+            ticket.type_ticket = 'N'
+          end
+
+          ticket.save
+
+          ss.ticket_id = ticket.id
+          ss.save
 
 
-        # ss.ticket_id = ticket.id
+          # ss.ticket_id = ticket.id
+        end
       end
-    end
 
-    if @transactions.valid?
-      redirect_to employee_transactions_path
-    else
+      if @transactions.valid?
+        redirect_to employee_transactions_path
+      else
 
+      end
     end
   end
 
-
   private
+  def check_pay(card_hash)
+    return true
+  end
+
   def set_show
     if params[:show_id].nil?
       redirect_to new_employee_transaction_path

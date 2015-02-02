@@ -98,6 +98,7 @@
         <div class="row hidden" id="div-credit-card">
           <div class="col-md-12">
             <h3 class='text-center text-primary'>Datos de Tarjeta</h3>
+            <p id='danger-payment' class="text-danger text-center"></p>
           </div>
           <div class="col-md-6">
             <%= label_tag 'Numero tarjeta:',nil,class: 'text-primary margintop15'%> <br/>
@@ -105,18 +106,18 @@
             <%= label_tag 'Fecha Vencimiento:',nil,class: 'text-primary margintop15' %> <br/>
           </div>
           <div class="col-md-6">
-            <%= number_field :card, :number, {:class =>'margintop15 form-control',
+            <%= number_field :card, :number, {:class =>'margintop15 form-control credit_card_field',
                                               :id=> 'card_number_id'} %>
-            <%= text_field :card, :name_in, {:class =>'margintop15 form-control',
+            <%= text_field :card, :name_in, {:class =>'margintop15 form-control credit_card_field',
                                              :id=> 'card_name_id'}%>
             <div class="row">
               <div class="col-md-6">
-                <%= text_field :card, :exp_month, {:class =>'margintop15 form-control',
+                <%= text_field :card, :exp_month, {:class =>'margintop15 form-control credit_card_field',
                                                  :id=> 'card_exp_month'}%>
 
               </div>
               <div class="col-md-6">
-                <%= text_field :card, :exp_year, {:class =>'margintop15 form-control',
+                <%= text_field :card, :exp_year, {:class =>'margintop15 form-control credit_card_field',
                                                  :id=> 'card_exp_year'}%>
 
               </div>

@@ -87,7 +87,7 @@ $(function(){
             alert('indique cantidad de entradas');
         else if ($this.hasClass('seat_clicked')){
             clicked_times--;
-            $button_submit.attr('type','button');
+            //$button_submit.attr('type','button');
             $this.removeClass('seat_clicked');
             $this.addClass('available');
             $todo.text('Seleccione los asientos deseados.');
@@ -109,7 +109,7 @@ $(function(){
                 clicked_times++;
                 var res = [];
                 if (clicked_times==tickets){
-                    $button_submit.attr('type','submit');
+                    //$button_submit.attr('type','submit');
                     $clicked_seats = $('.seat_clicked');
                     $.each($clicked_seats,function(i,val){
                         res.push($(val).attr('id'));
@@ -170,13 +170,14 @@ $(function(){
         }
     });
 
+// USER INPUTS
     var $userNameInput = $('#name-user-input');
     var $userCiInput = $('#ci-user-input');
 
     $userNameInput.keyup(function(){
         //console.log('ci');
         if ($userCiInput.val()!=""){
-            if ($button_submit.hasClass('hidden'))
+            if ($button_submit.hasClass('hidden') )
                 $button_submit.removeClass('hidden');
         }
         else
@@ -189,7 +190,7 @@ $(function(){
     $userCiInput.keyup(function(){
         //console.log('ci');
         if ($userNameInput.val()!=""){
-            if ($button_submit.hasClass('hidden'))
+            if ($button_submit.hasClass('hidden') )
                 $button_submit.removeClass('hidden');
         }
         else
@@ -198,28 +199,117 @@ $(function(){
 
 
     });
+    // USER INPUTS END
 
+    //PAYMENT
     var $select_payment=$('#payment_method');
     var $div_card_payment = $('#div-credit-card');
     $select_payment.on("change",function(){
-       if ($select_payment.val()=='credit_card'){
-           if ($div_card_payment.hasClass('hidden'))
-               $div_card_payment.removeClass('hidden');
-       }
+        if ($select_payment.val()=='credit_card'){
+            if ($div_card_payment.hasClass('hidden'))
+                $div_card_payment.removeClass('hidden');
+
+        }
         else
-       {
-           if (!$div_card_payment.hasClass('hidden'))
-               $div_card_payment.addClass('hidden');
-       }
+        {
+            if (!$div_card_payment.hasClass('hidden'))
+                $div_card_payment.addClass('hidden');
+
+        }
     });
 
 
-//    continue...
-
-    var $card1 = $('#card_number_id');
-    var $card2 = $('#card_name_id');
-    var $card3 = $('#card_exp_month');
-    var $card4 = $('#card_exp_year');
-
+    var $card_fields = $('.credit_card_field');
+    var $message_payment = $('#danger-payment');
+    $button_submit.on('click',function(){
+        if (!$div_card_payment.hasClass('hidden')){
+            var count = 0;
+            $.each($card_fields,function(i,val) {
+                if (count==0){
+                    if ($(val).val()==""){
+                        count++;
+                    }
+                }
+            });
+            if (count==0){
+                $button_submit.attr('type','submit');
+                $button_submit.trigger('click');
+            }
+            else{
+                $message_payment.text('Faltan Campos de tarjeta de crédito');
+            }
+        }
+        else{
+            $button_submit.attr('type','submit');
+            $button_submit.trigger('click');
+        }
+    });
 
 });
+
+//var $card1 = $('#card_number_id');
+//var $card2 = $('#card_name_id');
+//var $card3 = $('#card_exp_month');
+//var $card4 = $('#card_exp_year');
+////var aux=0, aux2=0;
+//var auxarr = [];
+//auxarr.push($card1);
+//auxarr.push($card2);
+//auxarr.push($card3);
+//auxarr.push($card4);
+//
+// var $card1 = $('#card_number_id');
+    //var $card2 = $('#card_name_id');
+    //var $card3 = $('#card_exp_month');
+    //var $card4 = $('#card_exp_year');
+    //var aux=0, aux2=0;
+//    //
+//    //$card1.onkeyup(function(){
+//    //    if ($card1.val().length==10){
+//    //        aux++;
+//    //        aux2++;
+//    //        if (aux==4)
+//    //            if ($button_submit.hasClass('hidden'))
+//    //                $button_submit.removeClass('hidden');
+//    //
+//    //    }
+//    //    else{
+//    //        if (aux2!=0){
+//    //            aux2--;
+//    //            aux--;
+//    //        }
+//    //    }
+//    //
+//    //});
+//    //$card2.onkeyup(function(){
+//    //    if ($card2.val()!=""){
+//    //        aux++;
+//    //        aux2++;
+//    //        if (aux==4){
+//    //            if ($button_submit.hasClass('hidden'))
+//    //                $button_submit.removeClass('hidden');
+//    //        }
+//    //        else{
+//    //            if (!$button_submit.hasClass('hidden'))
+//    //                $button_submit.addClass('hidden');
+//    //        }
+//    //    }
+//    //    else{
+//    //        if (aux2!=0){
+//    //            aux2--;
+//    //            aux--;
+//    //        }
+//    //    }
+//    //});
+//    //$card3.onkeyup(function(){
+//    //
+//    //});
+//    //$card4.onkeyup(function(){
+//    //
+//    //});
+//
+//    // PAYMENT END
+//
+//    // continue...
+//
+//});
