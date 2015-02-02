@@ -1,6 +1,14 @@
 <% flash.each do |name, msg| -%>
     <%= content_tag :div, msg, class: name %>
 <% end -%>
+<% if !@_current_user.nil? %>
+    <br/>
+    <p class="text-primary" >Conectado con usuario:
+      <span class="text-success"> <%= @_current_user.name %> </span>
+    </p>
+    <br/>
+<% end %>
 
-<%= link_to "Funciones", employee_shows_path %>
+<%= link_to "Venta de Tickets" , employee_transactions_path %> <br/>
+<%= link_to "Funciones", employee_shows_path %> <br/>
 <%= link_to "salir", employee_logout_path%>

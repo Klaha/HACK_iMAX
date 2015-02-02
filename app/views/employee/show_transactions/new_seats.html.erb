@@ -29,11 +29,11 @@
             <% for j in (1..10) %>
 
                 <% if @seats_hash[(j+i*10)].nil? %>
-                    <div id="seat-<%= (j+i*10) %>" class="seat available seats1 col-md-1">
+                    <div id="seat-<%= (j+i*10) %>" class=" available  col-md-1">
                       <p><%= seats[(j+i*10)-1].row + '-' + seats[(j+i*10)-1].col.to_s %></p>
                     </div>
                 <% else %>
-                    <div class="seat <%= @seats_hash[(j+i*10)][1] %> seats1 col-md-1">
+                    <div class=" <%= @seats_hash[(j+i*10)][1] %>  col-md-1">
                       <p><%= @seats_hash[(j+i*10)][0][0] + '-' + @seats_hash[(j+i*10)][0][1].to_s %></p>
                     </div>
                 <% end %>
@@ -44,7 +44,44 @@
 
       <% end %>
   <% else %>
+      <% seats = Seat.all %>
+      <table class="table">
+      <% for j in (0...200) %>
 
+          <!--<table class="table">-->
+            <!--...-->
+          <!--</table>-->
+
+            <% if j%20==0 %>
+                <% if j>0 %>
+                    </tr>
+                <% end %>
+                <% if j<200 %>
+                    <tr>
+                <% end %>
+            <% else %>
+
+            <% end %>
+
+          <% if @seats_hash[j].nil? %>
+              <td id="seat-<%= j %>" class=" available">
+                <%= seats[j].row + '-' + seats[j].col.to_s %>
+              </div>
+          <% else %>
+              <td class=" <%= @seats_hash[j][1] %>">
+                <%= @seats_hash[j][0][0] + '-' + @seats_hash[j][0][1].to_s %>
+              </div>
+          <% end %>
+
+            <% if j%20!=0 %>
+                </td>
+            <% else %>
+
+            <% end %>
+
+
+      <% end %>
+      </table>
   <% end %>
 </div>
 
@@ -113,12 +150,12 @@
             <div class="row">
               <div class="col-md-6">
                 <%= text_field :card, :exp_month, {:class =>'margintop15 form-control credit_card_field',
-                                                 :id=> 'card_exp_month'}%>
+                                                   :id=> 'card_exp_month'}%>
 
               </div>
               <div class="col-md-6">
                 <%= text_field :card, :exp_year, {:class =>'margintop15 form-control credit_card_field',
-                                                 :id=> 'card_exp_year'}%>
+                                                  :id=> 'card_exp_year'}%>
 
               </div>
             </div>

@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150201171656) do
     t.integer  "show_id"
     t.datetime "datetime_transaction"
     t.string   "status"
+    t.string   "payment_method"
   end
 
   add_index "show_transactions", ["show_id"], name: "index_show_transactions_on_show_id"

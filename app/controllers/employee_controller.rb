@@ -6,6 +6,11 @@ class EmployeeController < LoginController
   end
 
   def login #formulario login
+    current_user #seteando current user
+    if !@_current_user.nil?
+      redirect_to employee_path
+      return
+    end
   end
 
   def create_session #generando cookies de login
