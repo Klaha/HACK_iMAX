@@ -17,29 +17,45 @@ class Employee::ShowsController < LoginController
 
   def create
     @show = Show.new(show_params)
-    if can_use_theater
-      # TEATRO NO OCUPADO
-      @show.date_show = Date.today
-      respond_to do |format|
-        if @show.save
-          format.html { redirect_to employee_show_path @show.id, notice: 'Show was successfully created.' }
-          format.json { render :show, status: :created, location: @show }
-        else
-          format.html { render :new }
-          format.json { render json: @show.errors, status: :unprocessable_entity }
-        end
-      end
-
+    count = Show.where(date_show: Date.today).length
+    if count==0
+      @show.time= (Time.now.midday+2*3600).utc
     else
-      #TEATRO OCUPADO 
-      respond_to do |format|
-        @ocupado = true
-        new
+      if count<5
+        @show.time= (Time.now.midday+(count+1)*2*3600).utc
+      else
+        respond_to do |format|
+          format.html {
+            redirect_to employee_shows_path,
+                                           notice: 'no es posible incluir mas funciones en esta sala el dia de hoy.'
+          }
+        end
+        return
+      end
+    end
+    # if can_use_theater
+    # TEATRO NO OCUPADO
+    @show.date_show = Date.today
+    respond_to do |format|
+      if @show.save
+        format.html { redirect_to employee_show_path @show.id, notice: 'Show was successfully created.' }
+        format.json { render :show, status: :created, location: @show }
+      else
         format.html { render :new }
         format.json { render json: @show.errors, status: :unprocessable_entity }
       end
     end
-    
+
+    # else
+    #   #TEATRO OCUPADO 
+    #   respond_to do |format|
+    #     @ocupado = true
+    #     new
+    #     format.html { render :new }
+    #     format.json { render json: @show.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
   end
 
   def destroy
@@ -51,7 +67,7 @@ class Employee::ShowsController < LoginController
     @path = employee_show_path
   end
 
-  def update 
+  def update
     respond_to do |format|
       if @show.update(show_params)
         format.html { redirect_to employee_shows_path, notice: 'Show was successfully updated.' }
@@ -61,52 +77,52 @@ class Employee::ShowsController < LoginController
     end
   end
 
-  
+
 
   private
-    # # Use callbacks to share common setup or constraints between actions.
-    def set_show
-      @show = Show.find(params[:id])
-    end
+  # # Use callbacks to share common setup or constraints between actions.
+  def set_show
+    @show = Show.find(params[:id])
+  end
 
-    def path_role_login
-      @path ||= employee_login_path
-      @role = "E"
-    end
+  def path_role_login
+    @path ||= employee_login_path
+    @role = "E"
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def show_params
-      # movie_id
-      # time
-      # date_show
-      params.require(:show).permit(:movie_id,:time,:theater_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def show_params
+    # movie_id
+    # time
+    # date_show
+    params.require(:show).permit(:movie_id,:theater_id)
+  end
 
-    def can_use_theater
-      start_time = @show.time.hour * 3600 + @show.time.min * 60
-      ending_time = start_time + @show.movie.duration.hour * 3600 + @show.movie.duration.min * 60
-      theater = Theater.find_by id: @show.theater_id
-
-      theater.shows.each do |s|
-        start_time_2 = s.time.hour * 3600 + s.time.min * 60
-        # SE SUMAN 30 MINUTOS al final de la duracion de las peliculas ya en el sistema para los
-        #30 minutos de limpieza
-        ending_time_2 = start_time_2 + s.movie.duration.hour * 3600 + (s.movie.duration.min + 30) * 60
-        
-        # BLOQUE DE Tiempo 1 show que se quiere ingresar (start_time , ending_time)
-        # BLOQUE DE Tiempo 2 show que se tiene en el sistema cargado (start_time_2 , ending_time_2)
-
-        if start_time > ending_time_2 
-          #ok
-        else 
-          if start_time_2 > ending_time
-            #ok
-          else
-            return false
-          end
-        end
-      end
-      return true
-    end
+  # def can_use_theater
+  #   start_time = @show.time.hour * 3600 + @show.time.min * 60
+  #   ending_time = start_time + @show.movie.duration.hour * 3600 + @show.movie.duration.min * 60
+  #   theater = Theater.find_by id: @show.theater_id
+  #
+  #   theater.shows.each do |s|
+  #     start_time_2 = s.time.hour * 3600 + s.time.min * 60
+  #     # SE SUMAN 30 MINUTOS al final de la duracion de las peliculas ya en el sistema para los
+  #     #30 minutos de limpieza
+  #     ending_time_2 = start_time_2 + s.movie.duration.hour * 3600 + (s.movie.duration.min + 30) * 60
+  #
+  #     # BLOQUE DE Tiempo 1 show que se quiere ingresar (start_time , ending_time)
+  #     # BLOQUE DE Tiempo 2 show que se tiene en el sistema cargado (start_time_2 , ending_time_2)
+  #
+  #     if start_time > ending_time_2
+  #       #ok
+  #     else
+  #       if start_time_2 > ending_time
+  #         #ok
+  #       else
+  #         return false
+  #       end
+  #     end
+  #   end
+  #   return true
+  # end
 
 end

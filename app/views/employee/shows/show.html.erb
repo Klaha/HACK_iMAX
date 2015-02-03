@@ -19,7 +19,7 @@
 
 <p>
   <strong>Time:</strong>
-  <%= @show.time %>
+  <%= @show.time.localtime('-04:30').strftime('%r') %>
 </p>
 
 <%= link_to 'Edit', edit_employee_show_path(@show.id) %> |

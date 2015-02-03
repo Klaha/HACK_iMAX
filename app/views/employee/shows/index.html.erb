@@ -22,7 +22,7 @@
         <td><%= show.id %> | </td>
         <td><%= show.movie.name %> | </td>
         <td><%= show.theater.theater_number %> | </td>
-        <td><%= show.time %> | </td>
+        <td><%= show.time.localtime('-04:30').strftime('%r') %> | </td>
         <td><%= show.date_show %> | </td>
         <td><%= link_to 'Show', employee_show_path(show.id) %> | </td>
         <td><%= link_to 'Edit', edit_employee_show_path(show.id) %> | </td>

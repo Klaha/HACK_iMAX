@@ -13,10 +13,6 @@
     <%= f.collection_select(:theater_id, Theater.all, :id, :theater_number, prompt: "Seleccione Sala") %>
   </div>
 
-  <div class="field">
-    <%= f.label :time %><br>
-    <%= f.time_select :time %>
-  </div>
 
   <div class="actions">
     <%= f.submit %>
