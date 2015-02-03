@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :users
+  # resources :users
   # resources :cartelera
 
   ##cartelera
@@ -33,5 +33,11 @@ Rails.application.routes.draw do
   end
 
   root to: 'cartelera#index'
-  
+
+  #registro usuario
+
+    get :registro, to: 'users#new'
+    post :registro, to: 'users#create'
+
+  #end registro usuario
 end

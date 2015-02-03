@@ -1,0 +1,33 @@
+<% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+<% end -%>
+
+<div class="row">
+  <div class="col-md-4">
+    <%= form_for @user, url: @path do |f| %>
+        <div class="fields">
+          <%=f.label :Nombre %> <br/>
+          <%= f.text_field :name,{class:'form-control'} %> <br/>
+
+          <%=f.label :Cedula_de_identidad %> <br/>
+          <%= number_field :user,:ci,{class:'form-control'} %> <br/>
+
+          <%= f.label :Email %> <br/>
+          <%= email_field :user, :email,{class:'form-control'} %> <br/>
+
+          <%= f.label 'Repetir Email' %> <br/>
+          <%= email_field 'user_verify', 'email',{class:'form-control'} %> <br/>
+
+          <%= f.label :Contraseña %> <br/>
+          <%= password_field :user, :password,{class:'form-control'} %> <br/>
+
+          <%= f.label 'Repetir contraseña' %> <br/>
+          <%= password_field 'user_verify', :password,{class:'form-control'} %> <br/>
+
+          <%= f.submit 'Continuar',{
+                                  class: 'btn btn-success margintop15'
+                          } %>
+        </div>
+  <% end %>
+  </div>
+</div>
