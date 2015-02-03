@@ -10,8 +10,8 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
+ * require_tree .
+ * require_self
  */
 
  img {
@@ -40,38 +40,5 @@
 
 /* EMPLOYEE SEATS */
 
-#n-tickets {
-    margin-bottom: 15px;
-}
-
-#formulario_seats{
-    margin-top:15px;
-}
-
-.seat{
-
-}
-.available{
-    background-color: greenyellow;
-}
-
-.busy{
-    background-color: red;
-}
-
-.reserved{
-    background-color: darkblue;
-    color: white;
-}
-
-.seat_clicked{
-    background-color: yellow;
-}
-.seats1{
-
-}
-.margintop15{
-    margin:15px 0px;
-}
 
 /*FIN EMPLOYEE SEATS*/

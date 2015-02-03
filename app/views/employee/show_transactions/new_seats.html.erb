@@ -1,3 +1,6 @@
+<%= javascript_include_tag 'employee/seats.js' %>
+<%= stylesheet_link_tag 'employee/seats.css' %>
+
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md 6">
@@ -6,6 +9,7 @@
     </h3>
   </div>
 </div>
+<br/>
 <div class="row">
   <div class="col-md-2">
     <p class="text-primary">Numero de entradas:</p>
@@ -20,6 +24,7 @@
     <p id="p-tickets1" class="text-success"></p>
   </div>
 </div>
+<br/>
 <div id="seats-div" class="hidden">
   <% if @theater.type_theater == 'N' %>
       <% seats = Seat.where(col:(1..10)) %>

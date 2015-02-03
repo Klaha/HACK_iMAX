@@ -38,6 +38,7 @@ if User.find_by(email:"client@client.com").nil?
   u1 = User.new
   u1.name="Johan client"
   u1.email="client@client.com"
+  u1.ci= '1'
   u1.password="12345"
   u1.role="C"
   u1.save
@@ -47,6 +48,7 @@ if User.find_by(email:"employee@employee.com").nil?
   u1 = User.new
   u1.name="Johan empleado"
   u1.email="employee@employee.com"
+  u1.ci= '2'
   u1.password="12345"
   u1.role="E"
   u1.save
@@ -56,6 +58,7 @@ if User.find_by(email:"admin@admin.com").nil?
   u1 = User.new
   u1.name="Johan Admin"
   u1.email="admin@admin.com"
+  u1.ci= '3'
   u1.password="12345"
   u1.role="A"
   u1.save
