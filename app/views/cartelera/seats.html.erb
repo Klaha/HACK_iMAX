@@ -1,3 +1,6 @@
+<%= javascript_include_tag 'employee/seats.js' %>
+<%= stylesheet_link_tag 'employee/seats.css' %>
+
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md 6">
@@ -6,6 +9,7 @@
     </h3>
   </div>
 </div>
+<br/>
 <div class="row">
   <div class="col-md-2">
     <p class="text-primary">Numero de entradas:</p>
@@ -20,8 +24,9 @@
     <p id="p-tickets1" class="text-success"></p>
   </div>
 </div>
+<br/>
 <div id="seats-div" class="hidden">
-  
+  <% if @theater.type_theater == 'N' %>
       <% seats = Seat.where(col:(1..10)) %>
       <% for i in (0...10) %>
           <div class="row">
@@ -29,11 +34,11 @@
             <% for j in (1..10) %>
 
                 <% if @seats_hash[(j+i*10)].nil? %>
-                    <div id="seat-<%= (j+i*10) %>" class="seat available seats1 col-md-1">
+                    <div id="seat-<%= (j+i*10) %>" class=" available  col-md-1">
                       <p><%= seats[(j+i*10)-1].row + '-' + seats[(j+i*10)-1].col.to_s %></p>
                     </div>
                 <% else %>
-                    <div class="seat <%= @seats_hash[(j+i*10)][1] %> seats1 col-md-1">
+                    <div class=" <%= @seats_hash[(j+i*10)][1] %>  col-md-1">
                       <p><%= @seats_hash[(j+i*10)][0][0] + '-' + @seats_hash[(j+i*10)][0][1].to_s %></p>
                     </div>
                 <% end %>
@@ -43,48 +48,128 @@
           </div>
 
       <% end %>
+  <% else %>
+      <% seats = Seat.all %>
+      <table class="table">
+        <% for j in (0...200) %>
 
-</div>
+            <!--<table class="table">-->
+            <!--...-->
+            <!--</table>-->
 
-<%= form_tag @path, id: 'formulario_seats' do %>
-    <%= text_field_tag 'show_id', nil, { :id => 'show_id',
-                                         :type => 'hidden',
-                                         :value => @show.id} %>
-    <%= text_field_tag 'seats_arr', nil, { :id => 'seats_arr',
-                                           :type => 'hidden'} %>
+            <% if j%20==0 %>
+                <% if j>0 %>
+                    </tr>
+                <% end %>
+                <% if j<200 %>
+                    <tr>
+                <% end %>
+            <% else %>
 
-    <div id="user-inputs" class="row hidden">
-      <div class="col-md-12">
-        <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-6">
-            <h4 class="text-success text-center">Precio entradas: <span id="price-shows"><%= @price %></span></h4>
+            <% end %>
+
+            <% if @seats_hash[j].nil? %>
+                <td id="seat-<%= j %>" class=" available">
+                  <%= seats[j].row + '-' + seats[j].col.to_s %>
+                </div>
+            <% else %>
+                <td class=" <%= @seats_hash[j][1] %>">
+                  <%= @seats_hash[j][0][0] + '-' + @seats_hash[j][0][1].to_s %>
+                  </div>
+            <% end %>
+
+            <% if j%20!=0 %>
+                </td>
+            <% else %>
+
+            <% end %>
+
+
+        <% end %>
+        </table>
+  <% end %>
+  </div>
+
+  <%= form_tag @path, id: 'formulario_seats' do %>
+      <%= text_field_tag 'show_id', nil, { :id => 'show_id',
+                                           :type => 'hidden',
+                                           :value => @show.id} %>
+      <%= text_field_tag 'seats_arr', nil, { :id => 'seats_arr',
+                                             :type => 'hidden'} %>
+
+      <div id="user-inputs" class="row hidden">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <h4 class="text-success text-center">Precio entradas: <span id="price-shows"><%= @price %></span></h4>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-2"></div>
-      <div class="col-md-2">
-        <%= label nil,'Nombre :',style: 'margin-bottom:15px;' %>
-        <%= label_tag 'Cedula de Identidad :' %>
-      </div>
-      <div class="col-md-2">
-        <%= text_field :user, :name, {:style => 'margin-bottom:15px;',
-                                      :id => 'name-user-input'}  %>
-        <%= text_field :user, :ci, {:id => 'ci-user-input'} %>
-        <%= number_field_tag :ticketsN, nil, {:class => 'hidden',
-                                          :id => 'ticketsN-id'} %>
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+          <%= label nil,'Nombre :',style: 'margin-bottom:15px;' %>
+          <%= label_tag 'Cedula de Identidad :' %>
+        </div>
+        <div class="col-md-2">
+          <%= text_field :user, :name, {:style => 'margin-bottom:15px;',
+                                        :id => 'name-user-input'}  %>
+          <%= text_field :user, :ci, {:id => 'ci-user-input'} %>
+          <%= number_field_tag :ticketsN, nil, {:class => 'hidden',
+                                                :id => 'ticketsN-id'} %>
 
-        <%=submit_tag :Continuar, {:type =>'button',
-                                   :id=>'submit_button',
-                                   :class =>'hidden btn btn-success',
-                                   :style => 'margin-top:15px;'} %>
-      </div>
-      <div class="col-md-4">
-        <h3 style="margin-top:0px;">Subtotal: </h3>
-        <p id="sub-entradas-N" ></p>
-        <p id="sub-entradas-E" ></p>
-        <h3>Total: <span id="total-entradas" class="text-success"></span></h3>
-      </div>
-    </div>
+          <%= select_tag :payment_method,
+                         options_for_select({'Tarjeta de crédito' => 'credit_card'},
+                                            'credit_card'),
+                         {:class => 'form-control hidden',
+                          :style => 'margin-top:15px;'} %>
 
-<% end %>
+        </div>
+        <div class="col-md-4">
+          <h3 style="margin-top:0px;">Subtotal: </h3>
+          <p id="sub-entradas-N" ></p>
+          <p id="sub-entradas-E" ></p>
+          <h3>Total: <span id="total-entradas" class="text-success"></span></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+
+          <div class="row hidden" id="div-credit-card">
+            <div class="col-md-12">
+              <h3 class='text-center text-primary'>Datos de Tarjeta</h3>
+              <p id='danger-payment' class="text-danger text-center"></p>
+            </div>
+            <div class="col-md-6">
+              <%= label_tag 'Numero tarjeta:',nil,class: 'text-primary margintop15'%> <br/>
+              <%= label_tag 'Nombre en Tarjeta:',nil,class: 'text-primary margintop15'%><br/>
+              <%= label_tag 'Fecha Vencimiento:',nil,class: 'text-primary margintop15' %> <br/>
+            </div>
+            <div class="col-md-6">
+              <%= number_field :card, :number, {:class =>'margintop15 form-control credit_card_field',
+                                                :id=> 'card_number_id'} %>
+              <%= text_field :card, :name_in, {:class =>'margintop15 form-control credit_card_field',
+                                               :id=> 'card_name_id'}%>
+              <div class="row">
+                <div class="col-md-6">
+                  <%= text_field :card, :exp_month, {:class =>'margintop15 form-control credit_card_field',
+                                                     :id=> 'card_exp_month'}%>
+
+                </div>
+                <div class="col-md-6">
+                  <%= text_field :card, :exp_year, {:class =>'margintop15 form-control credit_card_field',
+                                                    :id=> 'card_exp_year'}%>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <%=submit_tag :Continuar, {:type =>'button',
+                                     :id=>'submit_button',
+                                     :class =>'hidden btn btn-success margintop15'} %>
+
+        </div>
+      </div>
+  <% end %>

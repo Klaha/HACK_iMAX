@@ -7,7 +7,7 @@
     </div>
     <div class="col-sm-5">
       <h3 class="sinopsis-detalle"><%= @movie.sinopsis %></h3>
-      <h3 class="duracion-detalle">Duraci&oacute;n: <strong><%= @movie.duration.strftime("%I:%M") %></strong></h3>
+      <h3 class="duracion-detalle">Duraci&oacute;n: <strong><%= @movie.duration.localtime('-04:30').strftime("%I:%M") %></strong></h3>
     </div>    
   </div>
 </div>
@@ -21,7 +21,7 @@
     <tbody>
       <% @movie.shows.each do |m| %>
         <tr>
-            <td><%= m.time.strftime("%I:%M" + " %p") %> Sala: <%= m.theater_id %>&nbsp;&nbsp;&nbsp;<%= link_to 'Comprar', cartelera_seats_path(m) %></td>
+            <td><%= m.time.localtime('-04:30').strftime("%I:%M" + " %p") %> Sala: <%= m.theater_id %>&nbsp;&nbsp;&nbsp;<%= link_to 'Comprar', cartelera_seats_path(m) %></td>
         </tr>
       <% end %>
     </tbody>

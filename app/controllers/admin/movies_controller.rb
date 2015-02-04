@@ -1,6 +1,8 @@
-class Admin::MoviesController < ApplicationController
+class Admin::MoviesController < LoginController
+  before_action :path_role_login
   before_action :get_movies, only: [:show, :edit, :update, :destroy]
   before_action :show_all_movies, only: [:index]
+  before_action :require_login
 
   def index
   end
@@ -15,7 +17,7 @@ class Admin::MoviesController < ApplicationController
 
 	def create
     @movie = Movie.new(movie_params)
-    @movie.duration = Time.now.midday+2*3600
+    @movie.duration = Time.now.midday+1*3600+30*60
     if @movie.save
       redirect_to admin_movie_path @movie
     end
@@ -50,4 +52,10 @@ class Admin::MoviesController < ApplicationController
   def movie_params
     params.require(:movie).permit(:name, :sinopsis, :image)
   end
+
+  def path_role_login
+    @path ||= login_path
+    @role = "A"
+  end
+
 end

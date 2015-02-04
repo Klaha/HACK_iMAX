@@ -127,6 +127,19 @@ $(function(){
 
                     $todo.text('Indique Datos de Usuario más abajo.');
                     $user_inputs.removeClass('hidden');
+
+                    if ($select_payment.val()=='credit_card'){
+                        if ($div_card_payment.hasClass('hidden'))
+                            $div_card_payment.removeClass('hidden');
+
+                    }
+                    else
+                    {
+                        if (!$div_card_payment.hasClass('hidden'))
+                            $div_card_payment.addClass('hidden');
+
+                    }
+
                     var price = parseFloat($('#price-shows').text());
                     $('#sub-entradas-N').text('Entradas normales: '+price+' x '+
                     ticketsN+

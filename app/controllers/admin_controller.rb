@@ -1,4 +1,4 @@
-class EmployeeController < LoginController
+class AdminController < LoginController
   before_action :path_role_login # INDICA EL PATH PARA REDIRECCIONAR SI EL LOGIN ES FALLIDO, y el role de usuario para verificar
   before_action :require_login # VERIFICA USUARIO LOGEADO
   def index
@@ -9,6 +9,6 @@ class EmployeeController < LoginController
   private
   def path_role_login
     @path ||= login_path
-    @role = "E"
+    @role = "A"
   end
 end

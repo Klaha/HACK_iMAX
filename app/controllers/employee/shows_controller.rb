@@ -86,7 +86,7 @@ class Employee::ShowsController < LoginController
   end
 
   def path_role_login
-    @path ||= employee_login_path
+    @path ||= login_path
     @role = "E"
   end
 

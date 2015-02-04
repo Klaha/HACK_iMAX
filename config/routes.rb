@@ -22,22 +22,24 @@ Rails.application.routes.draw do
     end
 
     get   '/employee',        to: 'employee#index'
-    get   '/employee/login',  to: 'employee#login'
-    post  '/employee/login',  to: 'employee#create_session'
-    get   '/employee/logout', to: 'employee#destroy_session'
+    # get   '/employee/login',  to: 'employee#login'
+    # post  '/employee/login',  to: 'employee#create_session'
+
 
   ##end employee
 
   namespace :admin do
     resources :movies
   end
-
+  get '/admin', to: 'admin#index'
   root to: 'cartelera#index'
 
   #registro usuario
 
     get :registro, to: 'users#new'
     post :registro, to: 'users#create'
-
+    get :login, to: 'users#login'
+    post :login, to: 'users#create_session'
+    get   :logout , to: 'users#destroy_session'
   #end registro usuario
 end

@@ -124,7 +124,7 @@ class Employee::ShowTransactionsController < LoginController
 
   private
   def path_role_login
-    @path ||= employee_login_path
+    @path ||= login_path
     @role = "E"
   end
 
