@@ -99,7 +99,11 @@ $(function(){
                 $inputTickets2.removeClass('hidden');
             }
 
+            if (!$button_submit.hasClass('hidden'))
+                $button_submit.addClass('hidden');
 
+            if (!$div_card_payment.hasClass('hidden'))
+                $div_card_payment.addClass('hidden');
 
         } else if (clicked_times<tickets){
 
@@ -124,6 +128,14 @@ $(function(){
                     //res = straux.split('seat-')
                     $('#seats_arr').val(straux);
                     //console.log(straux);
+
+                    //var $userNameInput = $('#name-user-input');
+                    //var $userCiInput = $('#ci-user-input');
+
+                    if ($userNameInput.val() != "" && $userCiInput.val()!=""){
+                        if ($button_submit.hasClass('hidden') )
+                            $button_submit.removeClass('hidden');
+                    }
 
                     $todo.text('Indique Datos de Usuario más abajo.');
                     $user_inputs.removeClass('hidden');

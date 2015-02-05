@@ -112,11 +112,20 @@
           <%= label_tag 'Cedula de Identidad :' %>
         </div>
         <div class="col-md-2">
-          <%= text_field :user, :name, {:style => 'margin-bottom:15px;',
-                                        :id => 'name-user-input'}  %>
-          <%= text_field :user, :ci, {:id => 'ci-user-input'} %>
-          <%= number_field_tag :ticketsN, nil, {:class => 'hidden',
-                                                :id => 'ticketsN-id'} %>
+          <%= text_field :user, :name, {
+                                      :style => 'margin-bottom:15px;',
+                                      :id => 'name-user-input',
+                                      :value => @_current_user.name,
+                                      :readonly => true
+                              }  %>
+          <%= text_field :user, :ci, {:id => 'ci-user-input',
+                                      :value => @_current_user.ci.to_s,
+                                      :readonly => true
+                              } %>
+          <%= number_field_tag :ticketsN, nil, {
+                                                :class => 'hidden',
+                                                :id => 'ticketsN-id'
+                                        } %>
 
           <%= select_tag :payment_method,
                          options_for_select({'Tarjeta de crédito' => 'credit_card'},
@@ -141,34 +150,55 @@
               <h3 class='text-center text-primary'>Datos de Tarjeta</h3>
               <p id='danger-payment' class="text-danger text-center"></p>
             </div>
-            <div class="col-md-6">
-              <%= label_tag 'Numero tarjeta:',nil,class: 'text-primary margintop15'%> <br/>
-              <%= label_tag 'Nombre en Tarjeta:',nil,class: 'text-primary margintop15'%><br/>
-              <%= label_tag 'Fecha Vencimiento:',nil,class: 'text-primary margintop15' %> <br/>
-            </div>
-            <div class="col-md-6">
-              <%= number_field :card, :number, {:class =>'margintop15 form-control credit_card_field',
+            <div class="col-md-12">
+              <%= label_tag 'Numero tarjeta:',nil,class: 'text-primary '%> <br/>
+
+              <%= number_field :card, :number, {:class =>' form-control credit_card_field',
                                                 :id=> 'card_number_id'} %>
-              <%= text_field :card, :name_in, {:class =>'margintop15 form-control credit_card_field',
+
+              <%= label_tag 'Nombre en Tarjeta:',nil,class: 'text-primary '%><br/>
+
+              <%= text_field :card, :name_in, {:class =>' form-control credit_card_field',
                                                :id=> 'card_name_id'}%>
+
+              <%= label_tag 'Fecha Vencimiento:',nil,class: 'text-primary ' %> <br/>
+
+
+
               <div class="row">
                 <div class="col-md-6">
-                  <%= text_field :card, :exp_month, {:class =>'margintop15 form-control credit_card_field',
+                  <p class="text-primary">Mes:
+                    <span>
+                  <%= text_field :card, :exp_month, {:class =>' form-control credit_card_field',
                                                      :id=> 'card_exp_month'}%>
+                    </span>
+                  </p>
 
                 </div>
                 <div class="col-md-6">
-                  <%= text_field :card, :exp_year, {:class =>'margintop15 form-control credit_card_field',
+                  <p class="text-primary"> Año:
+                    <span>
+                      <%= text_field :card, :exp_year, {:class =>' form-control credit_card_field',
                                                     :id=> 'card_exp_year'}%>
+                    </span>
+                  </p>
+
 
                 </div>
               </div>
+
+            </div>
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-6">
+
             </div>
           </div>
 
           <%=submit_tag :Continuar, {:type =>'button',
                                      :id=>'submit_button',
-                                     :class =>'hidden btn btn-success margintop15'} %>
+                                     :class =>'btn btn-success hidden margintop15'} %>
 
         </div>
       </div>

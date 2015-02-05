@@ -4,10 +4,14 @@ Rails.application.routes.draw do
   # resources :cartelera
 
   ##cartelera
+    root to: 'cartelera#index'
     get '/cartelera', to: 'cartelera#index' 
     get 'cartelera/:id', to: 'cartelera#show', as: 'cartelera_show'
     get 'cartelera/:id/seats', to: 'cartelera#seats', as: 'cartelera_seats'
-  ##end cartelera
+    post 'cartelera/buy', to: 'cartelera#create'
+    get 'cartelera/compra/:transaction_id', to: 'cartelera#view_transaction', as: 'buy_info'
+
+    ##end cartelera
 
   ##employee
 
@@ -32,7 +36,7 @@ Rails.application.routes.draw do
     resources :movies
   end
   get '/admin', to: 'admin#index'
-  root to: 'cartelera#index'
+
 
   #registro usuario
 

@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 	#validates :ci, presence: true
 	validates :ci, uniqueness: true
 	validates :email, uniqueness: true #, presence: true
-#	validates :password, presence: true
+	validates :password, presence: true
 	validates :role, presence: true, inclusion: {in: %w(E C A),
 								 message: "%{value} is no a valid choise (E, C, or A)"}
 
@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 		u = User.where("email = ? AND password = ?",params[:email],params[:password])
 
 			if u.take.nil?
-			return false
+			return nil
 		else
 			return u.take
 		end
