@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-4">
+    <h3 class="text-primary">Precio Base:
+      <span class="text-success">
+        <%= @settings.price_ticket_type_1 %>
+      </span>
+    </h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <%= form_for @settings, url:admin_price_path do |f| %>
+
+        <%= f.label 'Nuevo Precio:' %>
+        <%= number_field :setting, :price_ticket_type_1, value: @settings.price_ticket_type_1  %>
+
+        <%= f.submit 'Actualizar' %>
+    <% end %>
+  </div>
+</div>
