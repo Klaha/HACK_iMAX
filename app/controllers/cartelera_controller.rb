@@ -29,7 +29,6 @@ class CarteleraController < LoginController
   end
 
   def create
-
     if check_pay params['card']
       seats = params['seats_arr'].split
       show_id = params['show_id']
@@ -63,7 +62,13 @@ class CarteleraController < LoginController
         @transactions.user_id = user.id
         @transactions.show_id = show_id
         @transactions.datetime_transaction = DateTime.now
-        @transactions.status = 'paid'
+
+        if params[:reserva][:bool]=="0"
+          @transactions.status = 'paid'
+        else
+          @transactions.status = 'reserved'
+        end
+
         @transactions.payment_method=params['payment_method']
         @transactions.save
 
