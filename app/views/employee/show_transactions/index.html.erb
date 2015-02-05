@@ -19,13 +19,23 @@
         </p>
       </div>
       <div class="col-md-1">
+        <%
+           user = {}
+           if transaction.user.nil?
+             user[:name]= transaction.client_info.name
+             user[:ci]= transaction.client_info.ci
+           else
+             user[:name]=transaction.user.name
+             user[:ci]=transaction.user.ci
+           end
+        %>
         <p class="text-primary">Cliente nombre:
-          <br><span class="text-success"> <%= transaction.user.name %> </span>
+          <br><span class="text-success"> <%= user[:name] %> </span>
         </p>
       </div>
       <div class="col-md-1">
         <p class="text-primary">Cliente ci:
-          <br><span class="text-success"> <%= transaction.user.ci %> </span>
+          <br><span class="text-success"> <%= user[:ci] %> </span>
         </p>
       </div>
       <div class="col-md-1">

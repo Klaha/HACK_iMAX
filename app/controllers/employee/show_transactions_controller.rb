@@ -50,11 +50,10 @@ class Employee::ShowTransactionsController < LoginController
 
       user = User.find_by(ci: ci)
       if user.nil?
-        user = User.new
-        user.ci = ci
-        user.name = uname
-        user.role = 'C'
-        user.save
+        user = ClientInfo.new(params.require(:user).permit(:name,:ci))
+        # user.show_transaction_id = show_id
+        # user.save
+        # user = nil
       end
       @price = Setting.take.price_ticket_type_1
 
@@ -77,12 +76,24 @@ class Employee::ShowTransactionsController < LoginController
         end
 
         @transactions = ShowTransaction.new
-        @transactions.user_id = user.id
+
+        # @transactions.user_id = user.id
         @transactions.show_id = show_id
         @transactions.datetime_transaction = DateTime.now
         @transactions.status = 'paid'
         @transactions.payment_method=params['payment_method']
+
+        if user.class==ClientInfo
+          @transactions.user_id = nil
+          user.show_transaction_id = @transactions.id
+          user.save
+
+        else
+          @transactions.user_id = user.id
+        end
+
         @transactions.save
+
 
         #ARREGLO DE IDS DE ASIENTOS
         seats.each do |seat_id|

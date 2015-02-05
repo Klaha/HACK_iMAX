@@ -1,16 +1,24 @@
-<p id="notice" class="text-danger"><%= notice %></p>
-<%= form_tag @path, method: :get do %>
-    <div class="field">
-      <%= label_tag 'Seleccione Función' %><br>
-      <% show_array = Show.all.map { |show| [show.movie.name +
-                                                     " " +
-                                                     show.time.strftime("%I:%M%P").to_s, show.id ] } %>
-      <%= select_tag(:show_id,options_for_select(show_array)) %>
-    </div>
 
-    <div class="actions">
-      <%= submit_tag :Continuar, class: 'btn btn-primary margintop15' %>
-    </div>
-<% end %>
+<% flash.each do |name, msg| -%>
+    <p class="text-danger"> <%= content_tag :div, msg, class: name %> </p>
+<% end -%>
 
-<%= link_to 'Back', employee_transactions_path,class:'btn btn-primary margintop15' %>
+<div class="row">
+  <div class="col-md-4">
+    <%= form_tag @path, method: :get do %>
+        <div class="field">
+          <%= label_tag 'Seleccione Función' %><br>
+          <% show_array = Show.all.map { |show| [show.movie.name +
+                                                         " " +
+                                                         show.time.strftime("%I:%M%P").to_s, show.id ] } %>
+          <%= select_tag :show_id,options_for_select(show_array), class: 'form-control' %>
+        </div>
+
+        <div class="actions">
+          <%= submit_tag :Continuar, class: 'btn btn-primary margintop15' %>
+        </div>
+    <% end %>
+
+    <%= link_to 'Back', employee_transactions_path,class:'btn btn-primary margintop15' %>
+  </div>
+</div>
