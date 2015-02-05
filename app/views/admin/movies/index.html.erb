@@ -1,3 +1,7 @@
+<% flash.each do |name, msg| -%>
+    <p class="text-danger"> <%= content_tag :div, msg, class: name %> </p>
+<% end -%>
+
 <div class="col-sm-8 col-sm-offset-2">
   <div class="row">
     <h1 class="text-center">Películas:</h1>

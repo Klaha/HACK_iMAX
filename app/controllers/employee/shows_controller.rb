@@ -16,7 +16,8 @@ class Employee::ShowsController < LoginController
   end
 
   def create
-    @show = Show.new(show_params)
+    # nil.length
+    @show = Show.new({movie_id: params[:movie_id] , theater_id: params[:theater_id]})
     count = Show.where(date_show: Date.today).length
     if count==0
       @show.time= (Time.now.midday+2*3600).utc
@@ -59,8 +60,13 @@ class Employee::ShowsController < LoginController
   end
 
   def destroy
-    @show.destroy
-    redirect_to employee_shows_path
+    if @show.show_transactions.length==0
+      @show.destroy
+      redirect_to employee_shows_path
+    else
+      redirect_to employee_shows_path, notice: 'Ya hay boletos vendidos para esta función'
+    end
+
   end
 
   def edit
@@ -69,7 +75,7 @@ class Employee::ShowsController < LoginController
 
   def update
     respond_to do |format|
-      if @show.update(show_params)
+      if @show.update({movie_id: params[:movie_id] , theater_id: params[:theater_id]})
         format.html { redirect_to employee_shows_path, notice: 'Show was successfully updated.' }
       else
         format.html { render :edit }
@@ -91,12 +97,7 @@ class Employee::ShowsController < LoginController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def show_params
-    # movie_id
-    # time
-    # date_show
-    params.require(:show).permit(:movie_id,:theater_id)
-  end
+
 
   # def can_use_theater
   #   start_time = @show.time.hour * 3600 + @show.time.min * 60

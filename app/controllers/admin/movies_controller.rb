@@ -35,8 +35,13 @@ class Admin::MoviesController < LoginController
   end
 
   def destroy
-    @movie.destroy
-    redirect_to admin_movies_path
+    if @movie.shows.length==0
+      @movie.destroy
+      redirect_to admin_movies_path
+    else
+      redirect_to admin_movies_path, notice: 'Esta Pelicula tiene Funciones Cargadas!'
+
+    end
   end
 
   private
