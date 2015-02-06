@@ -69,9 +69,9 @@ class Employee::ShowsController < LoginController
 
   end
 
-  def edit
-    @path = employee_show_path
-  end
+  # def edit
+  #   @path = employee_show_path
+  # end
 
   def update
     respond_to do |format|

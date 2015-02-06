@@ -1,15 +1,19 @@
 <% flash.each do |name, msg| -%>
     <%= content_tag :div, msg, class: name %>
 <% end -%>
-<% if !@_current_user.nil? %>
-    <br/>
-    <p class="text-primary" >Conectado con usuario:
-      <span class="text-success"> <%= @_current_user.name %> </span>
-    </p>
-    <br/>
-<% end %>
+<div class="row">
+  <div class="col-md-4">
+    <% unless @_current_user.nil? %>
+        <br/>
+        <p class="text-primary" >Conectado con usuario Empleado:
+          <span class="text-success"> <%= @_current_user.name %> </span>
+        </p>
+        <br/>
+    <% end %>
 
-<%= link_to "Venta de Tickets" , employee_transactions_path %> <br/>
-<%= link_to "Funciones", employee_shows_path %> <br/>
-<%= link_to "Reservas", employee_reservations_path %> <br/>
-<%= link_to "salir", logout_path %>
+    <%= link_to "Venta de Tickets" , employee_transactions_path, class:'btn btn-primary margintop15' %> <br/>
+    <%= link_to "Funciones", employee_shows_path, class:'btn btn-primary margintop15' %> <br/>
+    <%= link_to "Reservas", employee_reservations_path, class:'btn btn-primary margintop15' %> <br/>
+
+  </div>
+</div>

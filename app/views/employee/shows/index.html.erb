@@ -1,38 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Shows</h1>
+<h1>Lista de Funciones</h1>
+<div class="row">
+  <div class="col-md-10">
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="8">Shows</th>
-    </tr>
-    <tr>
-      <td>id</td>
-      <td>Movie</td>
-      <td>Sala</td>
-      <td>Time</td>
-      <td>Date Show</td>
-      
-    </tr>
-  </thead>
-  <tbody>
-    <% @shows.each do |show| %>
+    <table class="table">
+      <thead>
       <tr>
-        <td><%= show.id %> | </td>
-        <td><%= show.movie.name %> | </td>
-        <td><%= show.theater.theater_number %> | </td>
-        <td><%= show.time.localtime('-04:30').strftime('%r') %> | </td>
-        <td><%= show.date_show %> | </td>
-        <td><%= link_to 'Show', employee_show_path(show.id) %> | </td>
-        <td><%= link_to 'Edit', edit_employee_show_path(show.id) %> | </td>
-        <td><%= link_to 'Destroy', employee_show_path(show.id), method: :delete, data: { confirm: 'Are you sure?' } %> | </td>
+        <th colspan="8">Funciones</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tr>
+        <th>id</th>
+        <th>Pelicula</th>
+        <th>Sala</th>
+        <th>Hora</th>
+        <th>Fecha Función</th>
 
-<br>
+      </tr>
+      </thead>
+      <tbody>
+      <% @shows.each do |show| %>
+          <tr>
+            <td><%= show.id %>  </td>
+            <td><%= show.movie.name %>  </td>
+            <td><%= show.theater.theater_number %>  </td>
+            <td><%= show.time.localtime('-04:30').strftime('%r') %>  </td>
+            <td><%= show.date_show %>  </td>
+            <td><%= link_to 'Ver', employee_show_path(show.id),class: 'btn btn-primary' %>  </td>
+            <td><%= link_to 'Eliminar', employee_show_path(show.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>  </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
 
-<%= link_to 'New Show', new_employee_show_path %>
-<%= link_to 'Salir', logout_path %>
+    <br>
+
+    <%= link_to 'Nueva Función', new_employee_show_path, class: 'btn btn-success' %>
+
+  </div>
+</div>

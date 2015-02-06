@@ -1,6 +1,11 @@
 <div class="row">
   <div class="col-md-12">
-    <%= link_to 'Películas', admin_movies_path %>
-    <%= link_to 'Cambiar Precio Base', admin_price_path %>
+    <h1 class="text-primary text-center">Panel Administrador</h1>
+  </div>
+  <div class="col-md-4">
+    <h4 class="text-primary">Opciones:</h4>
+    <%= link_to 'Películas', admin_movies_path, class:'btn btn-primary margintop15' %> <br/>
+    <%= link_to 'Cambiar Precio Base', admin_price_path, class:'btn btn-primary margintop15' %>
+
   </div>
 </div>

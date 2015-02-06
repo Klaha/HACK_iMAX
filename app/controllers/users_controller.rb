@@ -51,7 +51,7 @@ class UsersController < LoginController
         end
       end
     else
-      redirect_to root_path, notice: "fallo al iniciar seccion"
+      redirect_to login_path, notice: "fallo al iniciar seccion"
     end
 
   end

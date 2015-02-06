@@ -5,7 +5,7 @@ class Employee::ShowTransactionsController < LoginController
   before_action :require_login
 
   def index
-    @transactions = ShowTransaction.all
+    @transactions = ShowTransaction.all.order(datetime_transaction: :desc)
   end
 
   def show
@@ -85,14 +85,16 @@ class Employee::ShowTransactionsController < LoginController
 
         if user.class==ClientInfo
           @transactions.user_id = nil
+          @transactions.save
           user.show_transaction_id = @transactions.id
           user.save
 
         else
           @transactions.user_id = user.id
+          @transactions.save
         end
 
-        @transactions.save
+        # @transactions.save
 
 
         #ARREGLO DE IDS DE ASIENTOS

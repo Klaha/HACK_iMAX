@@ -11,68 +11,51 @@
 <br/>
 <br/>
 
-<% @transactions.each do |transaction| %>
-    <div class="row">
-      <div class="col-md-1">
-        <p class="text-primary">Fecha transaccion:
-          <br><span class="text-success"> <%= transaction.datetime_transaction.localtime.strftime("%c") %> </span>
-        </p>
-      </div>
-      <div class="col-md-1">
-        <%
-           user = {}
-           if transaction.user.nil?
-             user[:name]= transaction.client_info.name
-             user[:ci]= transaction.client_info.ci
-           else
-             user[:name]=transaction.user.name
-             user[:ci]=transaction.user.ci
-           end
-        %>
-        <p class="text-primary">Cliente nombre:
-          <br><span class="text-success"> <%= user[:name] %> </span>
-        </p>
-      </div>
-      <div class="col-md-1">
-        <p class="text-primary">Cliente ci:
-          <br><span class="text-success"> <%= user[:ci] %> </span>
-        </p>
-      </div>
-      <div class="col-md-1">
-        <p class="text-primary">Tickets:
-          <br><span class="text-success"> <%= transaction.tickets.length %> </span>
-        </p>
-      </div>
-      <div class="col-md-1">
-        <p class="text-primary">Tickets normales:
-          <br><span class="text-success"> <%= transaction.tickets.where(type_ticket: "N").length %> </span>
-        </p>
-      </div>
-      <div class="col-md-1">
-        <p class="text-primary">Tickets con descuento:
-          <br><span class="text-success"> <%= transaction.tickets.where(type_ticket: "E").length %> </span> </p>
-      </div>
-      <div class="col-md-1">
-        <% price = 0 %>
-        <% if transaction.tickets.where(type_ticket: "N").length!=0 %>
-            <% price = transaction.tickets.where(type_ticket: "N").take.price %>
-        <% else %>
-            <% price = transaction.tickets.where(type_ticket: "E").take.price/0.5 %>
-        <% end %>
-        <p class="text-primary">Precio tickets normales:
-          <br><span class="text-success"> <%= price %> </span>
-        </p>
-      </div>
-      <div class="col-md-1">
-        <p class="text-primary">Status:</p>
-        <br/><span class="text-success"> <%= transaction.status %> </span>
-      </div>
-      <div class="col-md-1">
-        <p class="text-primary">Total:
-          <br><span class="text-success"> <%= transaction.total_transaction %> </span>
-        </p>
-      </div>
-    </div>
-<% end %>
+<table class='table table-striped table-bordered '>
+    <tr class='text-primary'>
+      <th>Fecha transaccion</th>
+      <th>Cliente nombre</th>
+      <th>Cliente ci:</th>
+      <th>Tickets:</th>
+      <th>Tickets normales:</th>
+      <th>Tickets con descuento:</th>
+      <th>Precio tickets normales:</th>
+      <th>Status:</th>
+      <th>Total:</th>
+    </tr>
+  <% @transactions.each do |transaction| %>
+  <tr>
+    <td><%= transaction.datetime_transaction.localtime.strftime("%c") %></td>
+    <%
+       user = {}
+       if transaction.user.nil?
+         user[:name]= transaction.client_info.name
+         user[:ci]= transaction.client_info.ci
+       else
+         user[:name]=transaction.user.name
+         user[:ci]=transaction.user.ci
+       end
+    %>
 
+    <td><%= user[:name] %></td>
+    <td><%= user[:ci] %></td>
+    <td><%= transaction.tickets.length %></td>
+    <td><%= transaction.tickets.where(type_ticket: "N").length %></td>
+    <td><%= transaction.tickets.where(type_ticket: "E").length %></td>
 
+    <%
+       price = 0
+       if transaction.tickets.where(type_ticket: "N").length!=0
+         price = transaction.tickets.where(type_ticket: "N").take.price
+       else
+         price = transaction.tickets.where(type_ticket: "E").take.price/0.5
+       end
+    %>
+
+    <td><%= price %></td>
+    <td><%= transaction.status %></td>
+    <td><%= transaction.total_transaction %></td>
+  </tr>
+  <% end %>
+
+</table>
