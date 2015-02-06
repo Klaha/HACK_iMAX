@@ -14,6 +14,8 @@ $(function(){
     var $seats_div = $('#seats-div');
     //console.log($('#n-tickets'));
 
+    var $reserva_input_bool = $('#reserva_input_bool');
+    var $info_reserva = $('#reservainfo');
     $('#n-tickets').on('change',function(){
         tickets = parseInt($(this).val());
         clicked_times=0;
@@ -193,6 +195,16 @@ $(function(){
         else{
             alert('ya seleccionó la cantidad de entradas deseadas');
         }
+    });
+
+    $reserva_input_bool.on('click',function(){
+       if ($reserva_input_bool.is(':checked')){
+           $info_reserva.text("Las entradas reservadas no se cobrarán en la " +
+           "tarjeta de crédito, se deberán pagar el dia de la función en el cinea concurrir");
+       }
+        else
+           $info_reserva.text(" ");
+
     });
 
 // USER INPUTS

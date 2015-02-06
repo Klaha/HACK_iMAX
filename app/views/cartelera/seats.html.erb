@@ -20,7 +20,7 @@
     <input id="input-tickets1" type="text"/>
   </div>
   <div id="tickets-2" class="col-md-3 hidden">
-    <p class="text-primary">Entradas con Descuento:</p>
+    <p class="text-primary">Entradas para mayores de 65, o dias lunes:</p>
     <p id="p-tickets1" class="text-success"></p>
   </div>
 </div>
@@ -179,7 +179,7 @@
                   <p class="text-primary"> Año:
                     <span>
                       <%= text_field :card, :exp_year, {:class =>' form-control credit_card_field',
-                                                    :id=> 'card_exp_year'}%>
+                                                        :id=> 'card_exp_year'}%>
                     </span>
                   </p>
 
@@ -190,7 +190,8 @@
             </div>
             <div class="col-md-6 text-primary">
               <%= label_tag :reserva?  %>
-              <%= check_box :reserva, :bool %>
+              <%= check_box :reserva, :bool,id:'reserva_input_bool' %>
+              <p id="reservainfo" class='text-primary'></p>
 
             </div>
           </div>

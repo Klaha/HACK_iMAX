@@ -12,7 +12,8 @@ class CarteleraController < LoginController
   end
 
   def seats
-    @show = Show.find_by(params[:id])
+    # nil.length
+    @show = Show.find_by(id: params[:id])
     @path = cartelera_buy_path
     # @path_redirect = [(cartelera_show_path+'?'+@show.id), ]
     @theater = @show.theater
