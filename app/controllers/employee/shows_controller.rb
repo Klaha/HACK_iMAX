@@ -18,7 +18,7 @@ class Employee::ShowsController < LoginController
   def create
     # nil.length
     @show = Show.new({movie_id: params[:movie_id] , theater_id: params[:theater_id]})
-    count = Show.where(date_show: Date.today).length
+    count = Show.where(date_show: Date.today, theater_id: params[:theater_idgi]).length
     if count==0
       @show.time= (Time.now.midday+2*3600).utc
     else

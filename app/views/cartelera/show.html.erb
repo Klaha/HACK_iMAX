@@ -21,7 +21,21 @@
     <tbody>
       <% @movie.shows.each do |m| %>
         <tr>
-            <td><%= m.time.localtime('-04:30').strftime("%I:%M" + " %p") %> Sala: <%= m.theater_id %>&nbsp;&nbsp;&nbsp;<%= link_to 'Comprar', cartelera_seats_path(m) %></td>
+          <%
+             if m.theater.type_theater=='N'
+               available_seats = 100
+             else
+               available_seats = 200
+             end
+             m.seat_shows.each do |ss|
+               if ss.status!='available'
+                 available_seats-=1
+               end
+
+             end
+          %>
+            <td><%= m.time.localtime('-04:30').strftime("%I:%M" + " %p") %> Sala: <%= m.theater_id %> <br/>Asientos Disponibles: <%= available_seats.to_s %>
+              <br/> <%= link_to 'Comprar', cartelera_seats_path(m) %></td>
         </tr>
       <% end %>
     </tbody>
