@@ -9,7 +9,7 @@
           <%= label_tag 'Seleccione Función' %><br>
           <% show_array = Show.all.map { |show| [show.movie.name +
                                                          " " +
-                                                         show.time.strftime("%I:%M%P").to_s, show.id ] } %>
+                                                         show.time.localtime('-04:30').strftime("%I:%M%P").to_s, show.id ] } %>
           <%= select_tag :show_id,options_for_select(show_array), class: 'form-control' %>
         </div>
 

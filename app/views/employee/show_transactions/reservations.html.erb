@@ -2,10 +2,10 @@
     <%= content_tag :div, msg, class: name %>
 <% end -%>
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-3">
     <%= form_tag employee_reservations_view_path, method: :get do %>
         <p class="text-primary">Cedula:</p>
-        <%= text_field :user, :ci %>
+        <%= number_field :user, :ci,class:'form-control' %>
         </div>
         </div>
         <div class="row">

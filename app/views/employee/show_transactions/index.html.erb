@@ -11,7 +11,7 @@
 <br/>
 <br/>
 
-<table class='table table-striped table-bordered '>
+<table class='table '>
     <tr class='text-primary'>
       <th>Fecha transaccion</th>
       <th>Cliente nombre</th>
@@ -23,8 +23,20 @@
       <th>Status:</th>
       <th>Total:</th>
     </tr>
-  <% @transactions.each do |transaction| %>
-  <tr>
+
+  <%
+     contador = @transactions.length
+     @transactions.each do |transaction|
+     contador-=1
+
+        if contador.odd?
+          cls = "class=info"
+        else
+          cls=''
+        end
+     %>
+
+  <tr <%= cls %>>
     <td><%= transaction.datetime_transaction.localtime.strftime("%c") %></td>
     <%
        user = {}
