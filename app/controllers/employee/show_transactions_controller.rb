@@ -133,6 +133,39 @@ class Employee::ShowTransactionsController < LoginController
     end
   end
 
+  def reservations
+
+  end
+
+  def reservations_view
+    # nil.length
+    ci = params[:user][:ci]
+    user = User.find_by(ci: ci)
+    @result = []
+
+    unless user.nil?
+      user.show_transactions.each do |ss|
+        if ss.status == 'reserved'
+          @result.push(ss)
+        end
+      end
+      if @result.length==0
+        redirect_to employee_reservations_path, notice: 'Usuario sin reservas'
+      end
+    else
+      redirect_to employee_reservations_path, notice: 'Cedula no encontrada'
+    end
+  end
+
+  def reservation_pay
+    # nil.length
+    show_transaction = ShowTransaction.find_by(id: params[:id])
+    show_transaction.status = 'paid'
+    show_transaction.save
+    redirect_to employee_reservations_path, notice: 'Reservación Pagada'
+
+  end
+
   private
   def path_role_login
     @path ||= login_path

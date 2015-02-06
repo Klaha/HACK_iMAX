@@ -1,0 +1,71 @@
+<div class="row">
+  <% @result.each do |transaction| %>
+      <div class="row">
+        <div class="col-md-1">
+          <p class="text-primary">Fecha transaccion:
+            <br><span class="text-success"> <%= transaction.datetime_transaction.localtime.strftime("%c") %> </span>
+          </p>
+        </div>
+        <div class="col-md-1">
+          <%
+             user = {}
+             if transaction.user.nil?
+               user[:name]= transaction.client_info.name
+               user[:ci]= transaction.client_info.ci
+             else
+               user[:name]=transaction.user.name
+               user[:ci]=transaction.user.ci
+             end
+          %>
+          <p class="text-primary">Cliente nombre:
+            <br><span class="text-success"> <%= user[:name] %> </span>
+          </p>
+        </div>
+        <div class="col-md-1">
+          <p class="text-primary">Cliente ci:
+            <br><span class="text-success"> <%= user[:ci] %> </span>
+          </p>
+        </div>
+        <div class="col-md-1">
+          <p class="text-primary">Tickets:
+            <br><span class="text-success"> <%= transaction.tickets.length %> </span>
+          </p>
+        </div>
+        <div class="col-md-1">
+          <p class="text-primary">Tickets normales:
+            <br><span class="text-success"> <%= transaction.tickets.where(type_ticket: "N").length %> </span>
+          </p>
+        </div>
+        <div class="col-md-1">
+          <p class="text-primary">Tickets con descuento:
+            <br><span class="text-success"> <%= transaction.tickets.where(type_ticket: "E").length %> </span> </p>
+        </div>
+        <div class="col-md-1">
+          <% price = 0 %>
+          <% if transaction.tickets.where(type_ticket: "N").length!=0 %>
+              <% price = transaction.tickets.where(type_ticket: "N").take.price %>
+          <% else %>
+              <% price = transaction.tickets.where(type_ticket: "E").take.price/0.5 %>
+          <% end %>
+          <p class="text-primary">Precio tickets normales:
+            <br><span class="text-success"> <%= price %> </span>
+          </p>
+        </div>
+        <div class="col-md-1">
+          <p class="text-primary">Total:
+            <br><span class="text-success"> <%= transaction.total_transaction %> </span>
+          </p>
+        </div>
+        <div class="col-md-1">
+          <% #link_to 'Destroy', employee_show_path(show.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Pagar',
+                      employee_reservation_pay_path(transaction.id),
+                      method: :patch,
+                      data: {confirm: 'Culminado el abono de pago?'} %>
+        </div>
+      </div>
+
+
+  <% end %>
+
+</div>

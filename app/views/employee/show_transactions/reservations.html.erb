@@ -1,0 +1,19 @@
+<% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+<% end -%>
+<div class="row">
+  <div class="col-md-4">
+    <%= form_tag employee_reservations_view_path, method: :get do %>
+        <p class="text-primary">Cedula:</p>
+        <%= text_field :user, :ci %>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <%=submit_tag 'Buscar', class: 'btn btn-success margintop15' %>
+
+          </div>
+
+        </div>
+
+    <%end %>

@@ -19,6 +19,11 @@ Rails.application.routes.draw do
     resources :show_transactions , as: 'transactions', path: 'transactions'
     get 'transactions/new/seats', to: 'show_transactions#new_seats'
     get 'transactions/new/seats/client', to: 'show_transactions#new_seats_client'
+    get 'reservations', to: 'show_transactions#reservations'
+    get 'reservations/view', to: 'show_transactions#reservations_view'
+    patch 'reservations/pay/:id', to: 'show_transactions#reservation_pay', as:'reservation_pay'
+  #   reservation_pay
+
   end
 
   namespace :employee do
