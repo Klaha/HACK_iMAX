@@ -2,61 +2,115 @@
     <p class="text-primary"> <%= content_tag :div, msg, class: name %> </p>
 <% end -%>
 
-<div class="col-sm-12">
-  <div class="row">
-    <h1 class="text-center">Cartelera HACKiMAX</h1>
+<div class="row  title_cartelera">
+  <div class="col-sm-12">
+    <h1 class="text-center white_text">Cartelera HACKiMAX</h1>
   </div>
   <br>
 </div>
 
-<% @movies.first(2).each do |m| %>
-  <div class="col-sm-6">
-    <div class="row">
-      <div class="panel panel-default text-center">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= m.name %></h3>
-        </div>
-        <div class="panel-body" style="position:relative">
-          <div class="thumb" style="display:inline-block;">
-            <%= image_tag m.image %>
-          </div>
-          <div class="sinopsis">
-            <strong>Sinopsis: </strong><%= m.sinopsis %>
-          </div>
-          <br><br>
-          <div class="text-center" style="position: absolute; right:10px; bottom:15px">
-            <%= link_to "Horarios", cartelera_show_path(m.id), :class => 'btn btn-info' %>
-          </div>
-        </div>
-      </div>
-    </div>  
-  </div>
-<% end %>
+<div class="row ">
 
-<% if @movies.length > 2 %>
-    
-    <% @movies.slice(2, @movies.length).each do |m| %>
-      <div class="col-sm-4">
-        <div class="row">
-          <div class="panel panel-default text-center">
-            <div class="panel-heading">
-              <h3 class="panel-title"><%= m.name %></h3>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+
+
+        <% aux=0
+           @movies.first(3).each do |m| %>
+            <% if aux==0 %>
+                <div class="item active">
+            <% aux+=1
+               else %>
+                <div class="item">
+            <% end %>
+        <!--<div class="item active">-->
+            <div class="img_container">
+              <a href="<%= cartelera_show_path(m.id) %>"> <%= image_tag m.image %> </a>
             </div>
-            <div class="panel-body" style="position:relative">
-              <div class="thumb" style="display:inline-block;">
-                <%= image_tag m.image %>
-              </div>
-              <div class="sinopsis">
-                <strong>Sinopsis: </strong><%= m.sinopsis %>
-              </div>
-              <br><br>
-              <div class="text-center" style="position: absolute; right:10px; bottom:15px">
-                <%= link_to "Horarios", cartelera_show_path(m.id), :class => 'btn btn-info' %>
-              </div>
-            </div>
+          <div class="carousel-caption">
+            <%= link_to 'Horarios',cartelera_show_path(m.id), class: 'btn btn-primary' %> <br/>
           </div>
         </div>
+        <% end %>
+
       </div>
-    <% end %>
-    
-<%end%>
+
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+</div>
+
+
+
+
+
+<% if @movies.length > 3 %>
+
+      <div class="row estrenos">
+        <div class="col-md-12">
+          <h1 class="white_text text-center">Estrenos</h1>
+        </div>
+      </div>
+
+      <% aux=-1
+         @movies.slice(3, @movies.length).each do |m|
+         aux+=1
+         if aux%2==0
+           lol='bg_white'
+         else
+           lol='bg-primary'
+         end
+      %>
+          <div class="col-sm-4">
+            <div class="col-sm-12 ">
+              <div class="row">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="row <%= lol %> ">
+                        <h3 class="text-primary text-center <%= lol %>"><%= m.name %></h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6 image_sun">
+                    <div class="row">
+                      <div class="row">
+                        <%= image_tag m.image,class:'img_1' %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="col-sm-12">
+                      <p class="text-primary">Sinopsis: <br/> <%= m.sinopsis %></p>
+                      <%= link_to "Horarios", cartelera_show_path(m.id), :class => 'btn btn-info margintop15' %>
+                    </div>
+                  </div>
+                  <!--<div class="col-sm-2"></div>-->
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+      <% end %>
+
+<% end %>

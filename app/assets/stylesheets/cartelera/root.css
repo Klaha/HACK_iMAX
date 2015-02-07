@@ -1,41 +1,26 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- * require_tree .
- * require_self
- */
 
- img {
-  max-width: 100%;
-  max-height: 100%;
- }
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
 
 .thumb {
-  width: 150px;
-  height: 250px;
-  float: left;
+    width: 150px;
+    height: 250px;
+    float: left;
 }
 
 .sinopsis {
-  display: inline;
+    display: inline;
 }
 
 .sinopsis-detalle {
-  font-family: 'Walter Turncoat', cursive;
+    font-family: 'Walter Turncoat', cursive;
 }
 
 .duracion-detalle {
-  font-family: 'Walter Turncoat', cursive;
-  font-size: 20px;
+    font-family: 'Walter Turncoat', cursive;
+    font-size: 20px;
 }
 
 .margintop15{

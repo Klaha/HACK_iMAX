@@ -7,9 +7,13 @@
     <%= f.label :sinopsis, 'Sinopsis' %>
     <%= f.text_field :sinopsis, class: 'form-control' %>
   </div>
-  <div class="form-group">
-    <%= f.label :image, 'Ruta de Imágen' %>
-    <%= f.text_field :image, class: 'form-control' %>
-  </div>
+    <div class="form-group">
+      <%= f.label :image, 'Ruta de Imágen' %>
+      <%= f.text_field :image, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :img_carrousel, 'Imágen para Carrousel (opcional) Resolución: 1170x500' %>
+      <%= f.text_field :img_carrousel, class: 'form-control' %>
+    </div>
   <%= f.submit class: 'btn btn-success' %>
 <% end %>
