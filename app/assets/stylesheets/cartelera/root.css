@@ -1,4 +1,3 @@
-
 img {
     max-width: 100%;
     max-height: 100%;
@@ -37,16 +36,18 @@ img {
 body{
     margin: 0;
     padding: 0;
-    height: 100%;
-    background-color: #434343 !important;
-    background-image: linear-gradient(#434343, #282828);
+    /*height: 100%;*/
+    /*background-color: #b1b1b1 !important;*/
+    /*background-image: linear-gradient(#434343, #282828);*/
 }
 
-.container{
-    background-color: #a8a8a8;
-    /*border-left:2px solid black;*/
-    /*border-right:2px solid black;*/
 
+.footer{
+    background-color: rgb(36, 36, 36);
+}
+
+.footer .row .col-md-12 h2 {
+    color:rgb(187, 187, 187) !important;
 }
 
 .bg2{
@@ -99,12 +100,7 @@ body{
 .estrenos{
     background-color:rgb(12, 39, 61);
 }
-#conteent{
-    background-color: transparent;
-    background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
-    height: 100%;
-    background-size: 50px 50px;
-}
+
 .titlee{
     /*color:#ffffff;*/
     max-width: 150px;

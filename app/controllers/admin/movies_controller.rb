@@ -18,6 +18,13 @@ class Admin::MoviesController < LoginController
 	def create
     @movie = Movie.new(movie_params)
     @movie.duration = Time.now.midday+1*3600+30*60
+
+    if params[:img_carrousel]==''
+      @movie.img_carrousel=nil
+    else
+      @movie.img_carrousel=params[:img_carrousel]
+    end
+
     if @movie.save
       redirect_to admin_movie_path @movie
     end

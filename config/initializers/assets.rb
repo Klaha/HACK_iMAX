@@ -1,1 +1,1 @@
-Rails.application.config.assets.precompile += %w( employee/seats.js employee/seats.css)
+Rails.application.config.assets.precompile += %w( employee/seats.js cartelera/root.css employee/seats.css)

@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'cartelera/root.css' %>
 <% flash.each do |name, msg| -%>
     <p class="text-primary"> <%= content_tag :div, msg, class: name %> </p>
 <% end -%>
@@ -8,53 +9,69 @@
   </div>
   <br>
 </div>
+<%
+   carrousel_movies = @movies.where("img_carrousel != ''")
+   if carrousel_movies.length>0
+%>
+    <div class="row ">
 
-<div class="row ">
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
 
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-      </ol>
+          <% for auxi in (1..carrousel_movies.length)%>
+              <li data-target="#carousel-example-generic" data-slide-to="<% auxi %>"></li>
+              <!--<li data-target="#carousel-example-generic" data-slide-to="2"></li>-->
+          <% end %>
+        </ol>
 
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
 
 
-        <% aux=0
-           @movies.first(3).each do |m| %>
-            <% if aux==0 %>
-                <div class="item active">
-            <% aux+=1
-               else %>
-                <div class="item">
-            <% end %>
-        <!--<div class="item active">-->
+          <div class="item active">
+            <!--<div class="item active">-->
             <div class="img_container">
-              <a href="<%= cartelera_show_path(m.id) %>"> <%= image_tag m.image %> </a>
+              <a href="<%= cartelera_show_path(carrousel_movies[0].id) %>"> <%= image_tag carrousel_movies[0].image %> </a>
             </div>
-          <div class="carousel-caption">
-            <%= link_to 'Horarios',cartelera_show_path(m.id), class: 'btn btn-primary' %> <br/>
+            <div class="carousel-caption">
+              <%= link_to 'Horarios',cartelera_show_path(carrousel_movies[0].id), class: 'btn btn-primary' %> <br/>
+            </div>
           </div>
+          <% for i in (1..carrousel_movies.length)
+          m = carrousel_movies[i]
+          %>
+
+              <div class="item">
+                <!--<div class="item active">-->
+                <div class="img_container">
+                  <a href="<%= cartelera_show_path(m.id) %>"> <%= image_tag m.image %> </a>
+                </div>
+                <div class="carousel-caption">
+                </div>
+              </div>
+
+          <% end %>
+
+          </div>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-        <% end %>
 
       </div>
 
-      <!-- Controls -->
-      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
+    <% end %>
 
-</div>
+
 
 
 
