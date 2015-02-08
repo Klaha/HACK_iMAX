@@ -7,5 +7,6 @@ class AddMovieField < ActiveRecord::Migration
       # t.index :part_number
       # t.rename :upccode, :upc_code
     end
+    change_column :movies, :sinopsis, :text
   end
 end

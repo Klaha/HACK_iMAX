@@ -1,21 +1,32 @@
-<div class="col-sm-12 jumbotron">
-  <h1 class="text-center"><%= @movie.name %></h1>
-  <br>
-  <div class="row">
-    <div class="col-sm-3 col-sm-offset-2">
-      <%= image_tag @movie.image %>
-    </div>
-    <div class="col-sm-5">
-      <h3 class="sinopsis-detalle"><%= @movie.sinopsis %></h3>
-      <h3 class="duracion-detalle">Duraci&oacute;n: <strong><%= @movie.duration.localtime('-04:30').strftime("%I:%M") %></strong></h3>
-    </div>    
+<%= stylesheet_link_tag 'cartelera/shows.css' %>
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="text-center white_text"><%= @movie.name %></h1>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-sm-3">
+    <div class="img_wrapper_show">
+      <%= image_tag @movie.image %>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <hr/>
+    <h1 class="text-primary">Sinopsis:</h1>
+    <p class="white_text text-justify sinopsis" ><%= @movie.sinopsis %></p>
+    <hr/>
+    <h3 class="white_text">Duración: <strong><%= @movie.duration.localtime('-04:30').strftime("%I:%M") %></strong></h3>
+
+  </div>
+</div>
+
+<br/> <br/>
 <div class="col-sm-4 col-sm-offset-4">
-  <table class="table table-striped table-bordered text-center">
+  <table class="table table-bordered text-center">
     <thead>
       <tr>
-        <th class="text-center">Horarios</th>
+        <th class="text-center text-primary">Horarios</th>
       </tr>
     </thead>
     <tbody>
@@ -34,8 +45,11 @@
 
              end
           %>
-            <td><%= m.time.localtime('-04:30').strftime("%I:%M" + " %p") %> Sala: <%= m.theater_id %> <br/>Asientos Disponibles: <%= available_seats.to_s %>
-              <br/> <%= link_to 'Comprar', cartelera_seats_path(m) %></td>
+            <td class="white_text" >
+              <%= m.time.localtime('-04:30').strftime("%I:%M" + " %p") %>
+              Sala: <span class="text-success"><%= m.theater_id %></span> <br/>
+              Asientos Disponibles: <span class="text-success"> <%= available_seats.to_s %> </span>
+              <br/> <%= link_to 'Comprar', cartelera_seats_path(m), class:'btn btn-primary' %></td>
         </tr>
       <% end %>
     </tbody>
