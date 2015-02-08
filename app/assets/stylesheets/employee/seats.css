@@ -7,9 +7,6 @@
   margin-top:15px;
 }
 
-.seat{
-
-}
 .available{
   background-color: greenyellow;
 }
@@ -25,11 +22,4 @@
 
 .seat_clicked{
   background-color: yellow;
-}
-.seats1{
-
-}
-.margintop15{
-  margin:15px 0px;
-
 }

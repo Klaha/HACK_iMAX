@@ -3,7 +3,7 @@
     <p class="text-primary"> <%= content_tag :div, msg, class: name %> </p>
 <% end -%>
 
-<div class="row  title_cartelera">
+<div class="row"> <!--title_cartelera-->
   <div class="col-sm-12">
     <h1 class="text-center white_text">Cartelera HACKiMAX</h1>
   </div>
@@ -75,59 +75,45 @@
 
 
 
+<div class="row "> <!--estrenos-->
+  <div class="col-md-12">
+    <h1 class="white_text text-center">Estrenos</h1>
+  </div>
+</div>
+
+<div class="row peliculas">
+  <% aux=-1
+     @movies.where(img_carrousel: nil).each do |m|
+       aux+=1
+       if aux%2==0
+         lol='bg_white'
+       else
+         lol='bg-primary'
+       end
+  %>
+
+      <!--<div class="col-sm-3">-->
+        <!---->
+      <!--</div>-->
 
 
-<% if @movies.length > 3 %>
-
-      <div class="row estrenos">
-        <div class="col-md-12">
-          <h1 class="white_text text-center">Estrenos</h1>
-        </div>
-      </div>
-
-      <% aux=-1
-         @movies.slice(3, @movies.length).each do |m|
-         aux+=1
-         if aux%2==0
-           lol='bg_white'
-         else
-           lol='bg-primary'
-         end
-      %>
-          <div class="col-sm-4">
-            <div class="col-sm-12 ">
-              <div class="row">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="row">
-                      <div class="row <%= lol %> ">
-                        <h3 class="text-primary text-center <%= lol %>"><%= m.name %></h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-sm-6 image_sun">
-                    <div class="row">
-                      <div class="row">
-                        <%= image_tag m.image,class:'img_1' %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="col-sm-12">
-                      <p class="text-primary">Sinopsis: <br/> <%= m.sinopsis %></p>
-                      <%= link_to "Horarios", cartelera_show_path(m.id), :class => 'btn btn-info margintop15' %>
-                    </div>
-                  </div>
-                  <!--<div class="col-sm-2"></div>-->
-
-                </div>
-              </div>
+      <div class="col-sm-4">
+        <div class="row ">
+          <div class="col-sm-12 ">
+            <h3 class="text-primary text-center "><%= m.name %></h3>
+            <div class="img_wrapper">
+              <a href="<%= cartelera_show_path(m.id) %>"><%= image_tag m.image,class:'img_1' %></a>
             </div>
 
           </div>
-      <% end %>
 
-<% end %>
+        </div>
+
+
+
+      </div>
+  <% end %>
+
+
+</div>
+

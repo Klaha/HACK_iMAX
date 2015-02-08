@@ -1,35 +1,54 @@
+<%= stylesheet_link_tag 'admin/movies.css' %>
+
 <% flash.each do |name, msg| -%>
     <p class="text-danger"> <%= content_tag :div, msg, class: name %> </p>
 <% end -%>
 
-<div class="col-sm-8 col-sm-offset-2">
-  <div class="row">
-    <h1 class="text-center">Películas:</h1>
-    <div class="text-center">
-      <%= link_to "Cargar Nueva Película", new_admin_movie_path, :class => 'btn btn-success' %>
-    </div>
-    <br>
-    <table class="table table-striped table-bordered text-center">
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="white_text" >Películas</h1>
+    <%= link_to "Cargar Nueva Película", new_admin_movie_path, :class => 'btn btn-primary' %>
+
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+
+    <table class="table table-bordered white_text text-center margintop15">
       <thead>
-        <tr>
-          <th class="text-center">Nombre</th>
-          <th class="text-center">Sinopsis</th>
-          <th class="text-center">Duración</th>
-          <th class="text-center">Imágen</th>
-          <th class="text-center">Acciones</th>
-        </tr>
+      <tr>
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Sinopsis</th>
+        <th class="text-center">Duración</th>
+        <th class="text-center">Imágen</th>
+        <th class="text-center">¿Imágen carrousel?</th>
+        <th class="text-center">Acciones</th>
+      </tr>
       </thead>
       <tbody>
-        <% @movies.each do |m| %>
+      <% @movies.each do |m| %>
           <tr>
             <td><%= m.name %></td>
             <td><%= m.sinopsis %></td>
-            <td><%= m.duration.localtime('-04:30').strftime('%R') %></td>
-            <td><div class="thumb"><a href="/assets/<%= m.image %>"><%= image_tag m.image %></a></div></td>
-            <td><%= link_to "Editar", edit_admin_movie_path(m) %>&nbsp;|&nbsp;<%= link_to "Borrar", admin_movie_path(m), method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+            <td><%= m.duration.localtime('-04:30').strftime('%I:%M') %></td>
+            <td><div class="img_wrapper_admin"><a href="/assets/<%= m.image %>"><%= image_tag m.image %></a></div></td>
+            <% if m.img_carrousel.nil?%>
+                <td>
+                    <span class="glyphicon glyphicon-remove expand_icon" aria-hidden="true"></span>
+                </td>
+            <% else %>
+                <td>
+                    <span class="glyphicon glyphicon-ok expand_icon" aria-hidden="true"></span>
+                </td>
+            <% end %>
+            <td><%= link_to "Editar", edit_admin_movie_path(m), class:'btn btn-primary' %> <br/> <br/>
+              <%= link_to "Borrar", admin_movie_path(m), method: :delete, class:'btn btn-primary', data: { confirm: 'Estás seguro?' } %></td>
           </tr>
       <% end %>
       </tbody>
     </table>
+
   </div>
 </div>
+
+\

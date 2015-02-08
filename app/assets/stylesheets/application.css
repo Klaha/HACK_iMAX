@@ -15,5 +15,58 @@
  */
 
 .container{
-    width:95% !important;
+    /*width:85% !important;*/
+    /*height: 100%;*/
+
+}
+
+.content2{
+    position:absolute;
+    min-height: 100%;
+    width: 100%;
+    padding-bottom: 115px;
+}
+body{
+
+    /*height: 100%;*/
+
+    margin: 0;
+    padding: 0;
+    line-height: 20px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    color: #000000;
+    background-color: #2461AA !important;
+    /* background-image: url(../img/bg.jpg); */
+    background: url('http://www.cinex.com.ve/img/bg_amor.jpg') no-repeat #0A0809;
+    background-position: top;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    /*padding-bottom:100px;*/
+}
+
+.footer{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    margin-top: 15px;
+    background-color: rgb(36, 36, 36);
+    height: 100px;
+}
+
+.footer .row .col-md-12 h2 {
+    color:rgb(187, 187, 187) !important;
+}
+.nav_modified{
+    /*background-color: #24ace5;*/
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+}
+.margintop15{
+    margin:15px 0;
+}
+.white_text{
+    color:white;
 }
