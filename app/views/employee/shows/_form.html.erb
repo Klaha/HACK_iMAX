@@ -1,29 +1,31 @@
-<% if @ocupado %>
-  <h2>TEATRO OCUPADO! Porfavor Cambiar la hora</h2>
-<% end %>
-<div class="row">
-  <div class="col-md-4">
+<div class="well">
+  <% if @ocupado %>
+      <h2 class="white_text">TEATRO OCUPADO! Porfavor Cambiar la hora</h2>
+  <% end %>
+  <div class="row">
+    <div class="col-md-4">
 
-    <%= form_for @show, url: @path do |f| %>
-        <div class="field">
-          <%= f.label :movie_id %><br>
+      <%= form_for @show, url: @path do |f| %>
+          <div class="field">
+            <%= f.label :movie_id,class:'white_text' %><br>
 
-          <%= select_tag :movie_id, options_from_collection_for_select(Movie.all,:id,:name),class:'form-control' %>
-          <% # .collection_select(:movie_id, Movie.all, :id, :name, prompt: "Seleccione Película") %>
-        </div>
+            <%= select_tag :movie_id, options_from_collection_for_select(Movie.all,:id,:name),class:'form-control' %>
+            <% # .collection_select(:movie_id, Movie.all, :id, :name, prompt: "Seleccione Película") %>
+          </div>
 
-        <div class="field">
-          <%= f.label :theater_id %><br>
-          <%= select_tag :theater_id, options_from_collection_for_select(Theater.all,:id,:theater_number),class:'form-control' %>
-          <%# f.collection_select(:theater_id, Theater.all, :id, :theater_number, prompt: "Seleccione Sala") %>
-        </div>
+          <div class="field">
+            <%= f.label :theater_id,class:'white_text' %><br>
+            <%= select_tag :theater_id, options_from_collection_for_select(Theater.all,:id,:theater_number),class:'form-control' %>
+            <%# f.collection_select(:theater_id, Theater.all, :id, :theater_number, prompt: "Seleccione Sala") %>
+          </div>
 
 
-        <div class="actions">
-          <%= f.submit 'Crear',class:'btn btn-success margintop15' %>
-        </div>
-    <% end %>
+          <div class="actions">
+            <%= f.submit 'Crear',class:'btn btn-success margintop15' %>
+          </div>
+      <% end %>
 
-    <%= link_to 'Back', employee_shows_path,class:'btn btn-primary margintop15' %>
+      <%= link_to 'Back', employee_shows_path,class:'btn btn-primary margintop15' %>
+    </div>
   </div>
 </div>

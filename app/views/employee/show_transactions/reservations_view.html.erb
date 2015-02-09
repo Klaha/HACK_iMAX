@@ -1,3 +1,5 @@
+<br/>
+<br/>
 <div class="row">
   <% @result.each do |transaction| %>
       <div class="row">
@@ -61,6 +63,7 @@
           <%= link_to 'Pagar',
                       employee_reservation_pay_path(transaction.id),
                       method: :patch,
+                      class: 'btn btn-success',
                       data: {confirm: 'Culminado el abono de pago?'} %>
         </div>
       </div>

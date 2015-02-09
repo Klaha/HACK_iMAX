@@ -1,119 +1,119 @@
-<%= stylesheet_link_tag 'cartelera/root.css' %>
-<% flash.each do |name, msg| -%>
-    <p class="text-primary"> <%= content_tag :div, msg, class: name %> </p>
-<% end -%>
+<div class="well">
 
-<div class="row"> <!--title_cartelera-->
-  <div class="col-sm-12">
-    <h1 class="text-center white_text">Cartelera HACKiMAX</h1>
+  <%= stylesheet_link_tag 'cartelera/root.css' %>
+  <% flash.each do |name, msg| -%>
+      <p class="text-primary"> <%= content_tag :div, msg, class: name %> </p>
+  <% end -%>
+
+  <div class="row"> <!--title_cartelera-->
+    <div class="col-sm-12">
+      <h1 class="text-center white_text">Cartelera HACKiMAX</h1>
+    </div>
+    <br>
   </div>
-  <br>
-</div>
-<%
-   carrousel_movies = @movies.where("img_carrousel != ''")
-   if carrousel_movies.length>0
-%>
-    <div class="row ">
-
-      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-
-          <% for auxi in (1..carrousel_movies.length)%>
-              <li data-target="#carousel-example-generic" data-slide-to="<% auxi %>"></li>
-              <!--<li data-target="#carousel-example-generic" data-slide-to="2"></li>-->
-          <% end %>
-        </ol>
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-
-
-          <div class="item active">
-            <!--<div class="item active">-->
-            <div class="img_container">
-              <a href="<%= cartelera_show_path(carrousel_movies[0].id) %>"> <%= image_tag carrousel_movies[0].image %> </a>
-            </div>
-            <div class="carousel-caption">
-              <%= link_to 'Horarios',cartelera_show_path(carrousel_movies[0].id), class: 'btn btn-primary' %> <br/>
-            </div>
-          </div>
-          <% for i in (1..carrousel_movies.length)
-          m = carrousel_movies[i]
-          %>
-
-              <div class="item">
-                <!--<div class="item active">-->
-                <div class="img_container">
-                  <a href="<%= cartelera_show_path(m.id) %>"> <%= image_tag m.image %> </a>
-                </div>
-                <div class="carousel-caption">
-                </div>
-              </div>
-
-          <% end %>
-
-          </div>
-
-          <!-- Controls -->
-          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-
-      </div>
-
-    <% end %>
-
-
-
-
-
-<div class="row "> <!--estrenos-->
-  <div class="col-md-12">
-    <h1 class="white_text text-center">Estrenos</h1>
-  </div>
-</div>
-
-<div class="row peliculas">
-  <% aux=-1
-     @movies.where(img_carrousel: nil).each do |m|
-       aux+=1
-       if aux%2==0
-         lol='bg_white'
-       else
-         lol='bg-primary'
-       end
+  <%
+     carrousel_movies = @movies.where("img_carrousel != ''")
+     if carrousel_movies.length>0
   %>
 
-      <!--<div class="col-sm-3">-->
-        <!---->
-      <!--</div>-->
+
+      <div class="row ">
+
+        <div class="col-sm-12">
+          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+
+              <% for auxi in (1...carrousel_movies.length)%>
+                  <li data-target="#carousel-example-generic" data-slide-to="<% auxi %>"></li>
+                  <!--<li data-target="#carousel-example-generic" data-slide-to="2"></li>-->
+              <% end %>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
 
 
-      <div class="col-sm-4">
-        <div class="row ">
-          <div class="col-sm-12 ">
-            <h3 class="text-primary text-center "><%= m.name %></h3>
-            <div class="img_wrapper">
-              <a href="<%= cartelera_show_path(m.id) %>"><%= image_tag m.image,class:'img_1' %></a>
+              <div class="item active">
+                <!--<div class="item active">-->
+                <div class="img_container">
+                  <a href="<%= cartelera_show_path(carrousel_movies[0].id) %>"> <%= image_tag carrousel_movies[0].img_carrousel, class:'img_a' %> </a>
+                </div>
+                <div class="carousel-caption">
+                  <%= link_to 'Horarios',cartelera_show_path(carrousel_movies[0].id), class: 'btn btn-primary transparency_1' %> <br/>
+                </div>
+              </div>
+              <% for i in (1...carrousel_movies.length)
+                   m = carrousel_movies[i]
+              %>
+
+                  <div class="item">
+                    <!--<div class="item active">-->
+                    <div class="img_container">
+                      <a href="<%= cartelera_show_path(m.id) %>"> <%= image_tag m.img_carrousel, class:'img_a' %> </a>
+                    </div>
+                    <div class="carousel-caption">
+                      <%= link_to 'Horarios',cartelera_show_path(carrousel_movies[i].id), class: 'btn btn-primary transparency_1' %> <br/>
+                    </div>
+                  </div>
+
+              <% end %>
+
             </div>
 
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
-
         </div>
 
 
-
       </div>
+
   <% end %>
 
 
-</div>
 
+
+
+  <div class="row "> <!--estrenos-->
+    <div class="col-md-12">
+      <br/>
+      <h1 class="white_text text-center">Estrenos</h1>
+    </div>
+  </div>
+
+  <div class="row peliculas">
+    <% @movies.where(img_carrousel: nil).each do |m| %>
+        <div class="col-sm-4">
+          <div class="row">
+            <div class="col-sm-12">
+              <!--<h3 class="text-primary text-center "><%# m.name %></h3>-->
+              <div class="img_wrapper div_img text-center">
+                <a href="<%= cartelera_show_path(m.id) %>">
+                  <%= image_tag m.image,class:'img_1', data:{id:'a_'+m.id.to_s} %>
+                </a>
+                <a id="a_<%= m.id %>" class="btn btn-primary transparency_1" style="margin-top:-65px;" href="<%= cartelera_show_path(m.id) %>">Horários</a>
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+    <% end %>
+
+
+  </div>
+
+
+</div>

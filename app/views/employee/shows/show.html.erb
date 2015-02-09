@@ -1,26 +1,42 @@
+<%= stylesheet_link_tag 'employee/show_shows.css' %>
+
 <p id="notice"><%= notice %></p>
 
 
 
-<p>
-  <strong>Movie_id:</strong>
-  <%= @show.movie_id %>
-</p>
+<div class="row white_text">
 
-<p>
-  <strong>Sala:</strong>
-  <%= @show.theater.theater_number %>
-</p>
 
-<p>
-  <strong>Date_show:</strong>
-  <%= @show.date_show %>
-</p>
 
-<p>
-  <strong>Time:</strong>
-  <%= @show.time.localtime('-04:30').strftime('%r') %>
-</p>
+  <div class="col-md-4"></div>
+  <div class="col-md-4 well">
 
-<%= link_to 'Edit', edit_employee_show_path(@show.id) %> |
-<%= link_to 'Back', employee_shows_path %>
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-success">
+        <h3> <strong>Película:</strong><%= @show.movie.name %> </h3>
+      </a>
+      <a href="#" class="list-group-item list-group-item-info">
+        <strong>Sala:</strong>
+        <%= @show.theater.theater_number %>
+      </a>
+      <a href="#" class="list-group-item list-group-item-info">
+        <strong>Date_show:</strong>
+        <%= @show.date_show %>
+      </a>
+      <a href="#" class="list-group-item list-group-item-success">
+        Sala: 1
+      </a>
+      <a href="#" class="list-group-item list-group-item-success">
+        <strong>Time:</strong>
+        <%= @show.time.localtime('-04:30').strftime('%r') %>
+      </a>
+
+    </div>
+
+
+    <%= link_to 'Back', employee_shows_path, class: 'btn btn-primary' %>
+
+  </div>
+</div>
+
+

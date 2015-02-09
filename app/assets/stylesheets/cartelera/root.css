@@ -39,7 +39,6 @@ img {
 }
 
 
-
 .footer{
     background-color: rgb(36, 36, 36);
 }
@@ -56,7 +55,13 @@ img {
 }
 
 .item{
-    height: 450px;
+    height: 325px;
+    overflow: hidden;
+    /*min-width: 100%;*/
+}
+
+.item img{
+    width: 100%;
 }
 
 .img_container{
@@ -67,10 +72,7 @@ img {
     /*height:600px !important;*/
 }
 
-.img_1{
-    width: 100% !important;
-    height: 100%!important;
-}
+
 
 .title_cartelera{
     background-color: #F45959;
@@ -117,5 +119,49 @@ img {
 }
 
 .img_wrapper{
-    height: 380px;
+    height: 480px;
+    /*padding-bottom:15px;*/
+    opacity: 0.8;
+    padding:15px 0;
+}
+
+.img_wrapper:hover{
+    opacity: 1;
+    /*height:110%;*/
+}
+
+
+.img_1{
+    /*border:2px solid black;*/
+    width: 100% !important;
+    height: 100%!important;
+}
+
+.well{
+    padding-top:0 !important;
+    border:0;
+    border-left: 1px solid white!important;
+    border-right: 1px solid white!important;
+    border-radius: 0 !important;
+}
+
+.transparency_1{
+    opacity: 0.8;
+}
+
+.img_a{
+    /*opacity: 0.8;*/
+}
+.img_a:hover{
+    /*opacity: 1;*/
+}
+
+.transparency_1:hover{
+    opacity: 1;
+}
+h1{
+    margin:0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: rgba(35, 82, 124, 0.5);
 }
