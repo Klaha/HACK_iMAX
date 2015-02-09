@@ -1,15 +1,33 @@
-<%= form_for @movie, url: @path do |f| %>
-  <div class="form-group">
-    <%= f.label :name, 'Nombre' %>
-    <%= f.text_field :name, class: 'form-control' %>
+  <%= stylesheet_link_tag 'admin/movies.css' %>
+
+  <div class="row">
+    <div class="col-sm-3"></div>
+
+    <div class="col-sm-6">
+      <div class="white_text well">
+        <h1 class="text-center white_text">Editar Película</h1>
+
+        <%= form_for @movie, url: @path do |f| %>
+            <div class="form-group">
+              <%= f.label :name, 'Nombre' %>
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :sinopsis, 'Sinopsis' %>
+              <%= f.text_area  :sinopsis, class: 'form-control',rows: 12 %>
+            </div>
+            <div class="form-group">
+              <%= f.label :image, 'Ruta de Imágen' %>
+              <%= f.text_field :image, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :img_carrousel, 'Imágen para Carrousel (opcional) Resolución: 990x325' %>
+              <%= f.text_field :img_carrousel, class: 'form-control' %>
+            </div>
+            <%= f.submit 'Continuar' ,class: 'btn btn-primary' %>
+        <% end %>
+        <%= link_to 'Back', admin_movies_path, class:'btn btn-primary margintop15' %>
+      </div>
+
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.label :sinopsis, 'Sinopsis' %>
-    <%= f.text_field :sinopsis, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :image, 'Ruta de Imágen' %>
-    <%= f.text_field :image, class: 'form-control' %>
-  </div>
-  <%= f.submit class: 'btn btn-success' %>
-<% end %>

@@ -1,17 +1,21 @@
-<p id="notice"><%= notice %></p>
-<div class="row">
-  <div class="col-md-12">
-    <h1 class="text-center" >Ventas </h1>
+<div class="well">
+
+  <p id="notice"><%= notice %></p>
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center white_text" >Ventas </h1>
+    </div>
   </div>
-</div>
 
-<%= link_to 'Nueva Venta', new_employee_transaction_path, {
-                                 class: 'btn btn-success'
-                         } %>
-<br/>
-<br/>
+  <%= link_to 'Nueva Venta', new_employee_transaction_path, {
+                                   class: 'btn btn-success'
+                           } %>
+  <%= link_to 'Back', employee_path,class: 'btn btn-primary' %>
 
-<table class='table '>
+  <br/>
+  <br/>
+
+  <table class='table'>
     <tr class='text-primary'>
       <th>Fecha transaccion</th>
       <th>Cliente nombre</th>
@@ -24,50 +28,49 @@
       <th>Total:</th>
     </tr>
 
-  <%
-     contador = @transactions.length
-     @transactions.each do |transaction|
-     contador-=1
+    <% @transactions.each do |transaction| %>
 
-        if contador.odd?
-          cls = "class=info"
-        else
-          cls=''
-        end
-     %>
+        <tr class="white_text text-center" style="font-size: 16px;" >
+          <td><%= transaction.datetime_transaction.localtime.strftime("%c") %></td>
+          <%
+             user = {}
+             if transaction.user.nil?
+               user[:name]= transaction.client_info.name
+               user[:ci]= transaction.client_info.ci
+             else
+               user[:name]=transaction.user.name
+               user[:ci]=transaction.user.ci
+             end
+          %>
 
-  <tr <%= cls %>>
-    <td><%= transaction.datetime_transaction.localtime.strftime("%c") %></td>
-    <%
-       user = {}
-       if transaction.user.nil?
-         user[:name]= transaction.client_info.name
-         user[:ci]= transaction.client_info.ci
-       else
-         user[:name]=transaction.user.name
-         user[:ci]=transaction.user.ci
-       end
-    %>
+          <td><%= user[:name] %></td>
+          <td><%= user[:ci] %></td>
+          <td><%= transaction.tickets.length %></td>
+          <td><%= transaction.tickets.where(type_ticket: "N").length %></td>
+          <td><%= transaction.tickets.where(type_ticket: "E").length %></td>
 
-    <td><%= user[:name] %></td>
-    <td><%= user[:ci] %></td>
-    <td><%= transaction.tickets.length %></td>
-    <td><%= transaction.tickets.where(type_ticket: "N").length %></td>
-    <td><%= transaction.tickets.where(type_ticket: "E").length %></td>
+          <%
+             price = 0
+             if transaction.tickets.where(type_ticket: "N").length!=0
+               price = transaction.tickets.where(type_ticket: "N").take.price
+             else
+               price = transaction.tickets.where(type_ticket: "E").take.price/0.5
+             end
+          %>
 
-    <%
-       price = 0
-       if transaction.tickets.where(type_ticket: "N").length!=0
-         price = transaction.tickets.where(type_ticket: "N").take.price
-       else
-         price = transaction.tickets.where(type_ticket: "E").take.price/0.5
-       end
-    %>
+          <td><%= price %></td>
+          <%
+             if transaction.status=='paid'
+               t_status = 'text-success'
+             else
+               t_status = 'text-danger'
+             end
+          %>
+          <td ><h5 class="<%= t_status %> font_bold"><%= transaction.status %></h5></td>
+          <td><%= transaction.total_transaction %></td>
+        </tr>
+    <% end %>
 
-    <td><%= price %></td>
-    <td><%= transaction.status %></td>
-    <td><%= transaction.total_transaction %></td>
-  </tr>
-  <% end %>
+  </table>
 
-</table>
+</div>

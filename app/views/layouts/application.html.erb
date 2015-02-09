@@ -11,53 +11,77 @@
   <script src="//code.jquery.com/jquery-1.11.2.min.js" ></script>
 </head>
 <body>
-<div class="container">
-  <div class="row">
-    <nav class="navbar navbar-inverse" style="border-radius:0">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to 'hackIMAX', root_path, :class => 'navbar-brand' %>
-        </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
-          <ul class="nav navbar-nav">
-            <li><%= link_to 'Inicio', root_path %></li>
-            <% if @_current_user.nil? %>
-                <li><%= link_to 'Iniciar Sesión', login_path %></li>
-                <li><%= link_to 'Registro', registro_path %></li>
-            <% else %>
-                <%
-                   if @_current_user.role=="C"
-                     path = root_path
+<div class="content2">
+<header class="header">
+  <nav class="navbar navbar-inverse nav_modified">
+    <div class="container-fluid border_nav">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">HackImax</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'Inicio', root_path %></li>
+
+        </ul>
+
+
+        <!--<p class="text-center">Cartelera HACKiMAX</p>-->
+
+        <ul class="nav navbar-nav navbar-right">
+          <% if @_current_user.nil? %>
+              <li><%= link_to 'Iniciar Sesión', login_path %></li>
+              <li><%= link_to 'Registro', registro_path %></li>
+          <% else %>
+              <%
+                 if @_current_user.role=="C"
+                   path = root_path
+                 else
+                   if @_current_user.role=="E"
+                     path = employee_path
                    else
-                     if @_current_user.role=="E"
-                       path = employee_path
-                       else
-                       path = admin_path #admin path ...
-                       end
+                     path = admin_path #admin path ...
                    end
-                %>
-          <li><a href="<%= path %>" >Conectado con: <%= @_current_user.name %> </a></li>
-                <li><%= link_to 'Salir', logout_path %></li>
+                 end
+              %>
+              <li><a href="<%= path %>" >Conectado con: <%= @_current_user.name %> </a></li>
+              <li><%= link_to 'Salir', logout_path %></li>
           <% end %>
+        </ul>
 
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+  <div class="container">
+    <%= yield %>
   </div>
 
-  <%= yield %>
-
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2>HackImax</h2>
+          <p class="text-muted">Todos los derechos Reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
 </div>
+
+
 
 </body>
 </html>

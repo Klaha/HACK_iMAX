@@ -16,8 +16,16 @@ class Admin::MoviesController < LoginController
   end
 
 	def create
+    # nil.length
     @movie = Movie.new(movie_params)
     @movie.duration = Time.now.midday+1*3600+30*60
+
+    # if params[:img_carrousel]==''
+    #   @movie.img_carrousel=nil
+    # else
+    #   @movie.img_carrousel=params[:img_carrousel]
+    # end
+
     if @movie.save
       redirect_to admin_movie_path @movie
     end
@@ -29,6 +37,7 @@ class Admin::MoviesController < LoginController
   end
 
   def update
+    # @movie.img_carrousel=params[:img_carrousel]
     if @movie.update_attributes(movie_params)
       redirect_to admin_movie_path
     end 
@@ -55,7 +64,7 @@ class Admin::MoviesController < LoginController
   end
 
   def movie_params
-    params.require(:movie).permit(:name, :sinopsis, :image)
+    params.require(:movie).permit(:name, :sinopsis, :image,:img_carrousel)
   end
 
   def path_role_login

@@ -16,7 +16,7 @@ $(function(){
 
     var $reserva_input_bool = $('#reserva_input_bool');
     var $info_reserva = $('#reservainfo');
-    $('#n-tickets').on('change',function(){
+    $('#n-tickets').on('keyup',function(){
         tickets = parseInt($(this).val());
         clicked_times=0;
         //console.log($(this));

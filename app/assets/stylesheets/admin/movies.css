@@ -1,0 +1,14 @@
+.img_wrapper_admin{
+    height: 325px;
+    width: 250px;
+}
+
+.img_wrapper_admin img{
+    height: 100%;
+    width: 100%;
+}
+.expand_icon{
+    font-size:25px;
+}
+
+
