@@ -1,19 +1,27 @@
-<% flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, class: name %>
-<% end -%>
-<div class="row">
-  <div class="col-md-3">
-    <%= form_tag employee_reservations_view_path, method: :get do %>
-        <p class="text-primary">Cedula:</p>
-        <%= number_field :user, :ci,class:'form-control' %>
-        </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <%=submit_tag 'Buscar', class: 'btn btn-success margintop15' %>
+<div class="well">
+   <!--<br/> <br/>-->
+
+
+  <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+  <% end -%>
+  <div class="row">
+    <div class="col-md-3 text-justify">
+      <%= form_tag employee_reservations_view_path, method: :get do %>
+          <p class="text-primary">Cedula:</p>
+          <%= number_field :user, :ci,class:'form-control' %>
+          <%=submit_tag 'Buscar', class: 'btn btn-success margintop15' %>
+          <%= link_to 'Back', employee_path,class: 'btn btn-primary margintop15' %>
+
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+
+            </div>
 
           </div>
 
-        </div>
+      <%end %>
 
-    <%end %>
+</div>

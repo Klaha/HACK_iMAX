@@ -1,10 +1,14 @@
-<p id="notice"><%= notice %></p>
+<div class="row white_text well">
+  <p id="notice"><%= notice %></p>
 
-<h1>Lista de Funciones</h1>
-<div class="row">
+  <div class="col-md-12 text-center">
+    <h1>Lista de Funciones</h1>
+  </div>
+  <div class="col-md-1"></div>
   <div class="col-md-10">
 
     <%= link_to 'Nueva Función', new_employee_show_path, class: 'btn btn-success' %>
+    <%= link_to 'Back', employee_path,class: 'btn btn-primary' %>
 
     <table class="table">
       <thead>

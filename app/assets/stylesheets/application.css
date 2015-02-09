@@ -14,34 +14,78 @@
  * require_self
  */
 
- img {
-  max-width: 100%;
-  max-height: 100%;
- }
+.container{
+    /*width:85% !important;*/
+    /*height: 100%;*/
 
-.thumb {
-  width: 150px;
-  height: 250px;
-  float: left;
 }
 
-.sinopsis {
-  display: inline;
+.content2{
+    position:absolute;
+    min-height: 100%;
+    width: 100%;
+    padding-bottom: 100px;
+}
+body{
+
+    /*height: 100%;*/
+
+    margin: 0;
+    padding: 0;
+    line-height: 20px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    color: #000000;
+    background-color: #2461AA !important;
+    /* background-image: url(../img/bg.jpg); */
+    background: url('http://www.cinex.com.ve/img/bg_amor.jpg') no-repeat #0A0809;
+    background-position: top;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    /*padding-bottom:100px;*/
 }
 
-.sinopsis-detalle {
-  font-family: 'Walter Turncoat', cursive;
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-top: 15px;
+    background-color: rgb(36, 36, 36);
+    height: 100px;
 }
 
-.duracion-detalle {
-  font-family: 'Walter Turncoat', cursive;
-  font-size: 20px;
+.footer .row .col-md-12 h2 {
+    color:rgb(187, 187, 187) !important;
 }
-
-/* EMPLOYEE SEATS */
+.nav_modified{
+    /*background-color: #24ace5;*/
+    /*background: url('/assets/bg_header.jpg');*/
+    background-size: cover;
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+    height: 55px;
+}
 .margintop15{
-    margin:15px 0px;
-
+    margin:15px 0;
+}
+.white_text{
+    color:white;
+}
+.font_bold{
+    font-weight: bold !important;
 }
 
-/*FIN EMPLOYEE SEATS*/
+.well{
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 16, 31, 0.51)!important;
+    margin-bottom: 0px !important;
+    min-height: 100% !important;
+}
+
+.header{
+    /*background: url('/assets/bg_header.jpg');*/
+    /*height: 400px;*/
+}

@@ -1,21 +1,23 @@
-<div class="row">
-  <div class="col-md-4">
-    <h3 class="text-primary">Precio Base:
+<div class="well">
+  <div class="row">
+    <div class="col-md-4">
+      <h3 class="text-primary">Precio Base:
       <span class="text-success">
         <%= @settings.price_ticket_type_1 %>
       </span>
-    </h3>
+      </h3>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-4">
-    <%= form_for @settings, url:admin_price_path do |f| %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= form_for @settings, url:admin_price_path do |f| %>
 
-        <%= f.label 'Nuevo Precio:' %>
-        <%= number_field :setting, :price_ticket_type_1, value: @settings.price_ticket_type_1  %>
+          <%= f.label 'Nuevo Precio:',class:'white_text' %>
+          <%= number_field :setting, :price_ticket_type_1, value: @settings.price_ticket_type_1  %>
 
-        <%= f.submit 'Actualizar', class: 'btn btn-success ' %>
-    <% end %>
+          <%= f.submit 'Actualizar', class: 'btn btn-success ' %>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -97,7 +97,7 @@
     <%= text_field_tag 'seats_arr', nil, { :id => 'seats_arr',
                                            :type => 'hidden'} %>
 
-    <div id="user-inputs" class="row hidden">
+    <div id="user-inputs" class="row hidden white_text">
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-3"></div>
@@ -107,23 +107,35 @@
         </div>
       </div>
       <div class="col-md-2"></div>
-      <div class="col-md-2">
-        <%= label nil,'Nombre :',style: 'margin-bottom:15px;' %>
-        <%= label_tag 'Cedula de Identidad :' %>
-      </div>
-      <div class="col-md-2">
-        <%= text_field :user, :name, {:style => 'margin-bottom:15px;',
-                                      :id => 'name-user-input'}  %>
-        <%= text_field :user, :ci, {:id => 'ci-user-input'} %>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-6">
+            <%= label nil,'Nombre :' %>
+            <%= text_field :user, :name, {:style => 'margin-bottom:15px; color:black !important',
+                                          :id => 'name-user-input'}  %>
+          </div>
+          <div class="col-md-6">
+            <%= label_tag 'Cedula Cliente :' %>
+
+            <%= text_field :user, :ci, {id: 'ci-user-input',style: 'color:black !important'} %>
+          </div>
+        </div>
+
+
         <%= number_field_tag :ticketsN, nil, {:class => 'hidden',
                                               :id => 'ticketsN-id'} %>
+        <div class="row">
+          <div class="col-md-6"></div>
+          <div class="col-md-6">
+            <%= select_tag :payment_method,
+                           options_for_select({'Efectivo' => 'cash',
+                                               'Tarjeta de crédito' => 'credit_card',
+                                               'Cheque' => 'check'}, 'cash'),
+                           {:class => 'form-control',
+                            :style => 'margin-top:15px;'} %>
+          </div>
+        </div>
 
-        <%= select_tag :payment_method,
-                       options_for_select({'Efectivo' => 'cash',
-                                           'Tarjeta de crédito' => 'credit_card',
-                                           'Cheque' => 'check'}, 'cash'),
-                       {:class => 'form-control',
-                        :style => 'margin-top:15px;'} %>
 
       </div>
       <div class="col-md-4">

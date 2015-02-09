@@ -1,27 +1,31 @@
-<% flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, class: name %>
-<% end -%>
+<div class="well white_text">
 
-<div class="row">
-  <div class="col-md-3">
+  <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+  <% end -%>
 
-    <%=  form_for :user, url: login_path do |f| %>
+  <div class="row">
+    <div class="col-md-3">
 
-        <div class="field">
-          <label class="text-primary" >Correo</label> <br/>
-          <%= f.text_field :email, {class:'form-control', placeholder:'Direccion de Correo'} %>
-        </div>
+      <%=  form_for :user, url: login_path do |f| %>
 
-        <div class="field">
-          <label class="text-primary" >Contraseña</label> <br/>
-          <%= f.password_field :password,{class:'form-control', placeholder:'Contraseña'} %>
-        </div>
+          <div class="field">
+            <label class="text-primary" >Correo</label> <br/>
+            <%= f.text_field :email, {class:'form-control', placeholder:'Direccion de Correo'} %>
+          </div>
 
-        <div class="actions">
-          <br/>
-          <%= f.submit 'Iniciar Sección', class: 'btn btn-primary' %>
-        </div>
+          <div class="field">
+            <label class="text-primary" >Contraseña</label> <br/>
+            <%= f.password_field :password,{class:'form-control', placeholder:'Contraseña'} %>
+          </div>
 
-    <% end %>
+          <div class="actions">
+            <br/>
+            <%= f.submit 'Iniciar Sección', class: 'btn btn-primary' %>
+          </div>
+
+      <% end %>
+    </div>
   </div>
+
 </div>

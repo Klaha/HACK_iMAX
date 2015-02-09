@@ -32,13 +32,6 @@ class Employee::ShowTransactionsController < LoginController
   end
 
   def create
-  # nil.length
-=begin
-    "card"=>{"number"=>"1231231231",
- "name_in"=>"ads a asdaw a",
- "exp_month"=>"12",
- "exp_year"=>"21"},
-=end
 
     if check_pay params['card']
       seats = params['seats_arr'].split
@@ -122,7 +115,6 @@ class Employee::ShowTransactionsController < LoginController
           ss.save
 
 
-          # ss.ticket_id = ticket.id
         end
       end
 
